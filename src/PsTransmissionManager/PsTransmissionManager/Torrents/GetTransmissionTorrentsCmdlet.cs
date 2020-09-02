@@ -24,7 +24,13 @@ namespace TransmissionManager.Torrents
         [Parameter(Mandatory = false)]
         [Alias("P")]
         public string Password { get; set; }
-        
+
+        [Parameter(Mandatory = false)]
+        public SwitchParameter Completed { get; set; }
+
+        [Parameter(Mandatory = false)]
+        public SwitchParameter Incomplete { get; set; }
+
         [Parameter(Mandatory = false)]
         public SwitchParameter Json { get; set; }
 
@@ -57,9 +63,16 @@ namespace TransmissionManager.Torrents
                 if (config == null)
                     ThrowTerminatingError(new ErrorRecord(new Exception(ErrorMessages.ConfigMissing), null, ErrorCategory.InvalidArgument, null));
 
-                var transmissionSvc = new TorrentService(config);
+                var torrentSvc = new TorrentService(config);
             
-                Torrent[] torrents = Task.Run(async () => await transmissionSvc.GetTorrents()).Result;
+                Torrent[] torrents;
+
+                if (Completed.IsPresent)
+                    torrents = Task.Run(async () => await torrentSvc.GetCompletedTorrents()).Result;
+                else if (Incomplete.IsPresent)
+                    torrents = Task.Run(async () => await torrentSvc.GetIncompleteTorrents()).Result;
+                else 
+                    torrents = Task.Run(async () => await torrentSvc.GetTorrents()).Result;
 
                 if (Json)
                     WriteObject(JsonConvert.SerializeObject(torrents));

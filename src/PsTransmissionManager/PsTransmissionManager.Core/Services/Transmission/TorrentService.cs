@@ -26,8 +26,29 @@ namespace PsTransmissionManager.Core.Services.Transmission
         /// <returns></returns>
         public async Task<Torrent[]> GetTorrents()
         {
-            //return (await _client.TorrentGetAsync(new[] {TorrentFields.Name, TorrentFields.Status, TorrentFields.Id, TorrentFields.PercentDone}))?.TorrentList;
             return (await _client.TorrentGetAsync(TorrentFields.AllFields))?.TorrentList;
+        }
+
+        /// <summary>
+        /// Get completed torrents.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Torrent[]> GetCompletedTorrents()
+        {
+            return (await GetTorrents())
+                .Where(t => t.PercentDone == 1.0)
+                .ToArray();
+        }
+
+        /// <summary>
+        /// Get incomplete torrents.
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Torrent[]> GetIncompleteTorrents()
+        {
+            return (await GetTorrents())
+                .Where(t => t.PercentDone < 1.0)
+                .ToArray();
         }
 
         /// <summary>
