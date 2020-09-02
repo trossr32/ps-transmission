@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>TransmissionManager</AssemblyName>
+    <RootNamespace>TransmissionManager</RootNamespace>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PowerShellStandard.Library" Version="7.0.0-preview.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PsTransmissionManager.Core\PsTransmissionManager.Core.csproj" />
+    <ProjectReference Include="..\Transmission.NetCore.Client\Transmission.NetCore.Client.csproj" />
+  </ItemGroup>
+
+</Project>
