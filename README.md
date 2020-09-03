@@ -1,4 +1,4 @@
-# TransmissionManager
+# PsTransmission
 A Powershell module that integrates with the Transmission RPC API.
 
 Available in the [Powershell Gallery](https://www.powershellgallery.com/packages/Transmission)
