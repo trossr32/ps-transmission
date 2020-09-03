@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <AssemblyName>TransmissionManager</AssemblyName>
-    <RootNamespace>TransmissionManager</RootNamespace>
+    <AssemblyName>Transmission</AssemblyName>
+    <RootNamespace>Transmission</RootNamespace>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
@@ -12,12 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PsTransmissionManager.Core\PsTransmissionManager.Core.csproj" />
+    <ProjectReference Include="..\PsTransmission.Core\PsTransmission.Core.csproj" />
     <ProjectReference Include="..\Transmission.NetCore.Client\Transmission.NetCore.Client.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="TransmissionManager.dll-Help.xml">
+    <None Update="Transmission.dll-Help.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
