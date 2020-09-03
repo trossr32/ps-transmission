@@ -8,7 +8,7 @@ namespace TransmissionManager.Credentials
     [Cmdlet(VerbsCommon.Remove, "TransmissionCredentials", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     public class RemoveTransmissionCredentialsCmdlet : Cmdlet
     {
-        [Parameter(Mandatory = false, HelpMessage = "")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter DeletePermanent { get; set; }
 
         /// <summary>

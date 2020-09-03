@@ -2,13 +2,14 @@
 using System.Management.Automation;
 using System.Threading.Tasks;
 using PsTransmissionManager.Core.Services.Transmission;
+using TransmissionManager.Base;
 
 namespace TransmissionManager.System
 {
     [Cmdlet(VerbsData.Update, "TransmissionBlockLists", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
-    public class UpdateTransmissionBlockListsCmdlet : Cmdlet
+    public class UpdateTransmissionBlockListsCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, HelpMessage = "If supplied the response will be output as a boolean, otherwise a success message or terminating error will be output.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter AsBool { get; set; }
 
         /// <summary>
@@ -16,7 +17,7 @@ namespace TransmissionManager.System
         /// </summary>
         protected override void BeginProcessing()
         {
-
+            base.BeginProcessing();
         }
 
         /// <summary>

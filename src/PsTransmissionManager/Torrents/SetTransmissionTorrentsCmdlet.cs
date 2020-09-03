@@ -5,106 +5,107 @@ using System.Management.Automation;
 using System.Threading.Tasks;
 using PsTransmissionManager.Core.Services.Transmission;
 using Transmission.NetCore.Client.Models;
+using TransmissionManager.Base;
 
 namespace TransmissionManager.Torrents
 {
     [Cmdlet(VerbsCommon.Set, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
-    public class SetTransmissionTorrentsCmdlet : Cmdlet
+    public class SetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Array of torrent ids.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public List<int> TorrentIds { get; set; }
         
         /// <summary>
         /// This torrent's bandwidth
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "This torrent's bandwidth.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public int? BandwidthPriority { get; set; }
 
         /// <summary>
         /// Maximum download speed (KBps)
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Maximum download speed (KBps).")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public int? DownloadLimit { get; set; }
 
         /// <summary>
         /// Download limit is honoured
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Download limit is honoured.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public bool? DownloadLimited { get; set; }
 
         /// <summary>
         /// Session upload limits are honoured
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Session upload limits are honoured.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public bool? HonoursSessionLimits { get; set; }
 
         /// <summary>
         /// New location of the torrent's content
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "New location of the torrent's content.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public string Location { get; set; }
 
         /// <summary>
         /// Maximum number of peers
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Maximum number of peers.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public int? PeerLimit { get; set; }
 
         /// <summary>
         /// Position of this torrent in its queue [0...n)
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Position of this torrent in its queue [0...n).")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public int? QueuePosition { get; set; }
 
         /// <summary>
         /// Torrent-level number of minutes of seeding inactivity
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Torrent-level number of minutes of seeding inactivity.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public int? SeedIdleLimit { get; set; }
 
         /// <summary>
         /// Which seeding inactivity to use
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Which seeding inactivity to use.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public int? SeedIdleMode { get; set; }
 
         /// <summary>
         /// Torrent-level seeding ratio
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Torrent-level seeding ratio.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public double? SeedRatioLimit { get; set; }
 
         /// <summary>
         /// Which ratio to use. 
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Which ratio to use.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public int? SeedRatioMode { get; set; }
 
         /// <summary>
         /// Maximum upload speed (KBps)
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Maximum upload speed (KBps).")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public int? UploadLimit { get; set; }
 
         /// <summary>
         /// Upload limit is honoured
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Upload limit is honoured.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public bool? UploadLimited { get; set; }
 
         /// <summary>
         /// Strings of announce URLs to add
         /// </summary>
-        [Parameter(Mandatory = false, HelpMessage = "Strings of announce URLs to add.")]
+        [Parameter(Mandatory = false)]
         public List<string> TrackerAdd { get; set; }
 
         /// <summary>
         /// Ids of trackers to remove
         /// </summary>
-        [Parameter(Mandatory = false, HelpMessage = "Ids of trackers to remove.")]
+        [Parameter(Mandatory = false)]
         public List<int> TrackerRemove { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "If supplied the response will be output as a boolean, otherwise a success message or terminating error will be output.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter AsBool { get; set; }
 
         private List<int> _torrentIds;
@@ -114,9 +115,7 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void BeginProcessing()
         {
-            // validate a torrent id has been supplied
-            if (!(TorrentIds ?? new List<int>()).Any())
-                ThrowTerminatingError(new ErrorRecord(new Exception("The TorrentIds parameter must be supplied."), null, ErrorCategory.InvalidArgument, null));
+            base.BeginProcessing();
 
             _torrentIds = new List<int>();
         }
@@ -126,7 +125,8 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void ProcessRecord()
         {
-            _torrentIds.AddRange(TorrentIds);
+            if (TorrentIds != null)
+                _torrentIds.AddRange(TorrentIds);
         }
 
         /// <summary>
@@ -137,6 +137,10 @@ namespace TransmissionManager.Torrents
         {
             try
             {
+                // validate a torrent id has been supplied
+                if (!(TorrentIds ?? new List<int>()).Any())
+                    ThrowTerminatingError(new ErrorRecord(new Exception("The TorrentIds parameter must be supplied."), null, ErrorCategory.InvalidArgument, null));
+
                 var torrentSvc = new TorrentService();
                 
                 var request = new TorrentSettings

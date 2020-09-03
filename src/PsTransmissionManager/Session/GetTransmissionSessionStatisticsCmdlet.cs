@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PsTransmissionManager.Core.Services.Transmission;
 using Transmission.NetCore.Client.Models;
+using TransmissionManager.Base;
 
 namespace TransmissionManager.Session
 {
     [Cmdlet(VerbsCommon.Get, "TransmissionSessionStatistics", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
-    public class GetTransmissionSessionStatisticsCmdlet : Cmdlet
+    public class GetTransmissionSessionStatisticsCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, HelpMessage = "If supplied the response will be output as JSON.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter Json { get; set; }
 
         /// <summary>
@@ -18,7 +19,7 @@ namespace TransmissionManager.Session
         /// </summary>
         protected override void BeginProcessing()
         {
-
+            base.BeginProcessing();
         }
 
         /// <summary>

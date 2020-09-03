@@ -4,22 +4,23 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PsTransmissionManager.Core.Services.Transmission;
 using Transmission.NetCore.Client.Models;
+using TransmissionManager.Base;
 
 namespace TransmissionManager.Torrents
 {
     [Cmdlet(VerbsCommon.Rename, "TransmissionTorrentsPath", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
-    public class RenameTransmissionTorrentPathCmdlet : Cmdlet
+    public class RenameTransmissionTorrentPathCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = true, HelpMessage = "The torrent id.")]
+        [Parameter(Mandatory = true)]
         public int TorrentId { get; set; }
 
-        [Parameter(Mandatory = true, HelpMessage = "The path to the file or folder that will be renamed.")]
+        [Parameter(Mandatory = true)]
         public string TorrentPath { get; set; }
 
-        [Parameter(Mandatory = true, HelpMessage = "The file or folder's new name.")]
+        [Parameter(Mandatory = true)]
         public string TorrentName { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "If supplied the response will be output as JSON.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter Json { get; set; }
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void BeginProcessing()
         {
-
+            base.BeginProcessing();
         }
 
         /// <summary>

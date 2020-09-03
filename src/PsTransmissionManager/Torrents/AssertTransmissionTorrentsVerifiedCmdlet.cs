@@ -4,16 +4,17 @@ using System.Linq;
 using System.Management.Automation;
 using System.Threading.Tasks;
 using PsTransmissionManager.Core.Services.Transmission;
+using TransmissionManager.Base;
 
 namespace TransmissionManager.Torrents
 {
     [Cmdlet(VerbsLifecycle.Assert, "TransmissionTorrentsVerified", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
-    public class AssertTransmissionTorrentsVerifiedCmdlet : Cmdlet
+    public class AssertTransmissionTorrentsVerifiedCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Array of torrent ids.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public List<int> TorrentIds { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "If supplied the response will be output as a boolean, otherwise a success message or terminating error will be output.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter AsBool { get; set; }
 
         private List<int> _torrentIds;
@@ -23,9 +24,7 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void BeginProcessing()
         {
-            // validate a torrent id has been supplied
-            if (!(TorrentIds ?? new List<int>()).Any())
-                ThrowTerminatingError(new ErrorRecord(new Exception("The TorrentIds parameter must be supplied."), null, ErrorCategory.InvalidArgument, null));
+            base.BeginProcessing();
 
             _torrentIds = new List<int>();
         }
@@ -35,7 +34,8 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void ProcessRecord()
         {
-            _torrentIds.AddRange(TorrentIds);
+            if (TorrentIds != null)
+                _torrentIds.AddRange(TorrentIds);
         }
 
         /// <summary>
@@ -46,6 +46,10 @@ namespace TransmissionManager.Torrents
         {
             try
             {
+                // validate a torrent id has been supplied
+                if (!(TorrentIds ?? new List<int>()).Any())
+                    ThrowTerminatingError(new ErrorRecord(new Exception("The TorrentIds parameter must be supplied."), null, ErrorCategory.InvalidArgument, null));
+
                 var torrentSvc = new TorrentService();
                 
                 bool success = Task.Run(async () => await torrentSvc.VerifyTorrents(_torrentIds)).Result;

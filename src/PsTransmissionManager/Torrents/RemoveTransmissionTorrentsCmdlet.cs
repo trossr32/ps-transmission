@@ -4,25 +4,26 @@ using System.Linq;
 using System.Management.Automation;
 using System.Threading.Tasks;
 using PsTransmissionManager.Core.Services.Transmission;
+using TransmissionManager.Base;
 
 namespace TransmissionManager.Torrents
 {
     [Cmdlet(VerbsCommon.Remove, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
-    public class RemoveTransmissionTorrentsCmdlet : Cmdlet
+    public class RemoveTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Array of torrent ids.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public List<int> TorrentIds { get; set; }
         
-        [Parameter(Mandatory = false, HelpMessage = "Apply to all torrents.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter All { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Apply to completed torrents.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter Completed { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Apply to incomplete torrents.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter Incomplete { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "If supplied local data will be deleted.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter DeleteData { get; set; }
 
         private List<int> _torrentIds;
@@ -32,8 +33,7 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void BeginProcessing()
         {
-            if (!All.IsPresent && !Completed.IsPresent && !Incomplete.IsPresent && !(TorrentIds ?? new List<int>()).Any())
-                ThrowTerminatingError(new ErrorRecord(new Exception("One of the following parameters must be supplied: All, Completed, Incomplete, TorrentIds"), null, ErrorCategory.InvalidArgument, null));
+            base.BeginProcessing();
 
             _torrentIds = new List<int>();
         }
@@ -43,7 +43,8 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void ProcessRecord()
         {
-            _torrentIds.AddRange(TorrentIds);
+            if (TorrentIds != null)
+                _torrentIds.AddRange(TorrentIds);
         }
 
         /// <summary>
@@ -54,6 +55,9 @@ namespace TransmissionManager.Torrents
         {
             try
             {
+                if (!All.IsPresent && !Completed.IsPresent && !Incomplete.IsPresent && !(TorrentIds ?? new List<int>()).Any())
+                    ThrowTerminatingError(new ErrorRecord(new Exception("One of the following parameters must be supplied: All, Completed, Incomplete, TorrentIds"), null, ErrorCategory.InvalidArgument, null));
+
                 var torrentSvc = new TorrentService();
 
                 (bool success, int torrentCount) response;

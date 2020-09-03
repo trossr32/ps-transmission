@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PsTransmissionManager.Core.Services.Transmission;
 using Transmission.NetCore.Client.Models;
+using TransmissionManager.Base;
 
 namespace TransmissionManager.Torrents
 {
     [Cmdlet(VerbsCommon.Get, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
-    public class GetTransmissionTorrentsCmdlet : Cmdlet
+    public class GetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Array of torrent ids.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public List<int> TorrentIds { get; set; }
 
         [Parameter(Mandatory = false)]
@@ -21,7 +22,7 @@ namespace TransmissionManager.Torrents
         [Parameter(Mandatory = false)]
         public SwitchParameter Incomplete { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "If supplied the response will be output as JSON.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter Json { get; set; }
 
         private List<int> _torrentIds;
@@ -31,6 +32,8 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void BeginProcessing()
         {
+            base.BeginProcessing();
+
             _torrentIds = new List<int>();
         }
 
@@ -39,7 +42,8 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void ProcessRecord()
         {
-            _torrentIds.AddRange(TorrentIds);
+            if (TorrentIds != null)
+                _torrentIds.AddRange(TorrentIds);
         }
 
         /// <summary>
@@ -48,8 +52,8 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void EndProcessing()
         {
-            try
-            {
+            //try
+            //{
                 var torrentSvc = new TorrentService();
             
                 Torrent[] torrents;
@@ -67,11 +71,11 @@ namespace TransmissionManager.Torrents
                     WriteObject(JsonConvert.SerializeObject(torrents));
                 else
                     WriteObject(torrents);
-            }
-            catch (Exception e)
-            {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Failed to retrieve torrents, see inner exception for details", e), null, ErrorCategory.OperationStopped, null));
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    ThrowTerminatingError(new ErrorRecord(new Exception("Failed to retrieve torrents, see inner exception for details", e), null, ErrorCategory.OperationStopped, null));
+            //}
         }
     }
 }

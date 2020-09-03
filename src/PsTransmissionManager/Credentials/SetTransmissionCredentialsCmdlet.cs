@@ -22,7 +22,7 @@ namespace TransmissionManager.Credentials
         [Alias("P")]
         public string Password { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter StorePermanent { get; set; }
 
         /// <summary>

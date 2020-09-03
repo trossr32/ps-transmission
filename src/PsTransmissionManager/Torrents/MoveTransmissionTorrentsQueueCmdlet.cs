@@ -5,25 +5,26 @@ using System.Management.Automation;
 using System.Threading.Tasks;
 using PsTransmissionManager.Core.Enums;
 using PsTransmissionManager.Core.Services.Transmission;
+using TransmissionManager.Base;
 
 namespace TransmissionManager.Torrents
 {
     [Cmdlet(VerbsCommon.Move, "TransmissionTorrentsQueue", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
-    public class MoveTransmissionTorrentsQueueCmdlet : Cmdlet
+    public class MoveTransmissionTorrentsQueueCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Array of torrent ids.")]
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public List<int> TorrentIds { get; set; }
         
-        [Parameter(Mandatory = false, HelpMessage = "Move torrent(s) up the queue.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter Up { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Move torrent(s) down the queue.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter Down { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Move torrent(s) to the top of the queue.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter Top { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Move torrent(s) to the bottom of the queue.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter Bottom { get; set; }
 
         private List<int> _torrentIds;
@@ -33,13 +34,7 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void BeginProcessing()
         {
-            // validate queue move parameter has been supplied
-            if (!Up.IsPresent && !Down.IsPresent && !Top.IsPresent && !Bottom.IsPresent)
-                ThrowTerminatingError(new ErrorRecord(new Exception("One of the following parameters must be supplied: Up, Down, Top, Bottom"), null, ErrorCategory.InvalidArgument, null));
-
-            // validate a torrent id has been supplied
-            if (!(TorrentIds ?? new List<int>()).Any())
-                ThrowTerminatingError(new ErrorRecord(new Exception("The TorrentIds parameter must be supplied."), null, ErrorCategory.InvalidArgument, null));
+            base.BeginProcessing();
 
             _torrentIds = new List<int>();
         }
@@ -49,7 +44,8 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void ProcessRecord()
         {
-            _torrentIds.AddRange(TorrentIds);
+            if (TorrentIds != null)
+                _torrentIds.AddRange(TorrentIds);
         }
 
         /// <summary>
@@ -60,6 +56,14 @@ namespace TransmissionManager.Torrents
         {
             try
             {
+                // validate queue move parameter has been supplied
+                if (!Up.IsPresent && !Down.IsPresent && !Top.IsPresent && !Bottom.IsPresent)
+                    ThrowTerminatingError(new ErrorRecord(new Exception("One of the following parameters must be supplied: Up, Down, Top, Bottom"), null, ErrorCategory.InvalidArgument, null));
+
+                // validate a torrent id has been supplied
+                if (!(TorrentIds ?? new List<int>()).Any())
+                    ThrowTerminatingError(new ErrorRecord(new Exception("The TorrentIds parameter must be supplied."), null, ErrorCategory.InvalidArgument, null));
+
                 var torrentSvc = new TorrentService();
 
                 if (Up.IsPresent)

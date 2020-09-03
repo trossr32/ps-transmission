@@ -6,7 +6,7 @@ using PsTransmissionManager.Core.Services;
 
 namespace TransmissionManager.Base
 {
-    public abstract partial class BaseTransmissionCmdlet : Cmdlet
+    public abstract class BaseTransmissionCmdlet : Cmdlet
     {
         /// <summary>
         /// Implements the <see cref="BeginProcessing"/> method for <see cref="BaseTransmissionCmdlet"/>.
@@ -21,14 +21,12 @@ namespace TransmissionManager.Base
             if (TransmissionContext.HasCredentials)
                 return;
 
-            ThrowTerminatingError(new ErrorRecord(new Exception("No credentials set, Set-TransmissionCredentials must be run to save credentials before running any cmdlets."), null,
-                ErrorCategory.AuthenticationError, null)
+            var error = "No credentials set, Set-TransmissionCredentials must be run to save credentials before running any cmdlets.";
+
+            ThrowTerminatingError(new ErrorRecord(new Exception(error), null, ErrorCategory.AuthenticationError, null)
             {
-                CategoryInfo =
-                {
-                    Reason = "No credentials set, Set-TransmissionCredentials must be run to save credentials before running any cmdlets."
-                },
-                ErrorDetails = new ErrorDetails("No credentials set, Set-TransmissionCredentials must be run to save credentials before running any cmdlets.")
+                CategoryInfo = {Reason = error},
+                ErrorDetails = new ErrorDetails(error)
             });
         }
 

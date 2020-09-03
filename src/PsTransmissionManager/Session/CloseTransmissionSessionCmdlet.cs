@@ -2,18 +2,19 @@
 using System.Management.Automation;
 using System.Threading.Tasks;
 using PsTransmissionManager.Core.Services.Transmission;
+using TransmissionManager.Base;
 
 namespace TransmissionManager.Session
 {
     [Cmdlet(VerbsCommon.Close, "TransmissionSession", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
-    public class CloseTransmissionSessionCmdlet : Cmdlet
+    public class CloseTransmissionSessionCmdlet : BaseTransmissionCmdlet
     {
         /// <summary>
         /// Implements the <see cref="BeginProcessing"/> method for <see cref="CloseTransmissionSessionCmdlet"/>.
         /// </summary>
         protected override void BeginProcessing()
         {
-
+            base.BeginProcessing();
         }
 
         /// <summary>

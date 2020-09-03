@@ -6,52 +6,53 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using PsTransmissionManager.Core.Services.Transmission;
 using Transmission.NetCore.Client.Models;
+using TransmissionManager.Base;
 
 namespace TransmissionManager.Torrents
 {
     [Cmdlet(VerbsCommon.Add, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
-    public class AddTransmissionTorrentsCmdlet : Cmdlet
+    public class AddTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Array of torrent URLs (Magnet links).")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public List<string> Urls { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Array of torrent files.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public List<string> Files { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, HelpMessage = "Array of base64 encoded .torrent content.")]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public List<string> MetaInfos { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Pointer to a string of one or more cookies.")]
+        [Parameter(Mandatory = false)]
         public string Cookies { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Path to download the torrent to.")]
+        [Parameter(Mandatory = false)]
         public string DownloadDirectory { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "If true, don't start the torrent.")]
+        [Parameter(Mandatory = false)]
         public bool Paused { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Maximum number of peers.")]
+        [Parameter(Mandatory = false)]
         public int? PeerLimit { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Torrent's bandwidth.")]
+        [Parameter(Mandatory = false)]
         public int? BandwidthPriority { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Indices of file(s) to download.")]
+        [Parameter(Mandatory = false)]
         public List<int> FilesWanted { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Indices of file(s) to not download.")]
+        [Parameter(Mandatory = false)]
         public List<int> FilesUnwanted { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Indices of high-priority file(s).")]
+        [Parameter(Mandatory = false)]
         public List<int> PriorityHigh { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Indices of low-priority file(s).")]
+        [Parameter(Mandatory = false)]
         public List<int> PriorityLow { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "Indices of normal-priority file(s).")]
+        [Parameter(Mandatory = false)]
         public List<int> PriorityNormal { get; set; }
 
-        [Parameter(Mandatory = false, HelpMessage = "If supplied the response will be output as JSON.")]
+        [Parameter(Mandatory = false)]
         public SwitchParameter Json { get; set; }
 
         private List<string> _urls;
@@ -63,6 +64,8 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void BeginProcessing()
         {
+            base.BeginProcessing();
+
             _urls = new List<string>();
             _files = new List<string>();
             _metas = new List<string>();
