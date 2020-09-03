@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DeviceId;
 
-namespace PsTransmissionManager.Core.Services
+namespace PsTransmission.Core.Services
 {
     public static class EncryptionService
     {

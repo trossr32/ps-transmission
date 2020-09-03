@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using PsTransmissionManager.Core.Components;
+using PsTransmission.Core.Components;
 using Transmission.NetCore.Client;
 
-namespace PsTransmissionManager.Core.Services.Transmission
+namespace PsTransmission.Core.Services.Transmission
 {
     public class SystemService
     {

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using PsTransmissionManager.Core.Components;
+using PsTransmission.Core.Components;
 using Transmission.NetCore.Client;
 using Transmission.NetCore.Client.Models;
 
-namespace PsTransmissionManager.Core.Services.Transmission
+namespace PsTransmission.Core.Services.Transmission
 {
     public class SessionService
     {

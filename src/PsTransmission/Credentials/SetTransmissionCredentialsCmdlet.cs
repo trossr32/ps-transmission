@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Management.Automation;
 using System.Threading.Tasks;
-using PsTransmissionManager.Core.Components;
-using PsTransmissionManager.Core.Models;
-using PsTransmissionManager.Core.Services;
+using PsTransmission.Core.Components;
+using PsTransmission.Core.Models;
+using PsTransmission.Core.Services;
 
-namespace TransmissionManager.Credentials
+namespace Transmission.Credentials
 {
     [Cmdlet(VerbsCommon.Set, "TransmissionCredentials", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     public class SetTransmissionCredentialsCmdlet : Cmdlet

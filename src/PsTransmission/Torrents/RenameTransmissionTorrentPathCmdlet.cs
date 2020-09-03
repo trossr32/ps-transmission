@@ -2,11 +2,11 @@
 using System.Management.Automation;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using PsTransmissionManager.Core.Services.Transmission;
+using PsTransmission.Core.Services.Transmission;
+using Transmission.Base;
 using Transmission.NetCore.Client.Models;
-using TransmissionManager.Base;
 
-namespace TransmissionManager.Torrents
+namespace Transmission.Torrents
 {
     [Cmdlet(VerbsCommon.Rename, "TransmissionTorrentsPath", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     [OutputType(typeof(RenamedTorrent))]

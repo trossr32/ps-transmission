@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PsTransmissionManager.Core.Components;
-using PsTransmissionManager.Core.Enums;
+using PsTransmission.Core.Components;
+using PsTransmission.Core.Enums;
 using Transmission.NetCore.Client;
 using Transmission.NetCore.Client.Models;
 
-namespace PsTransmissionManager.Core.Services.Transmission
+namespace PsTransmission.Core.Services.Transmission
 {
     public class TorrentService
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Threading.Tasks;
-using PsTransmissionManager.Core.Enums;
-using PsTransmissionManager.Core.Services.Transmission;
-using TransmissionManager.Base;
+using PsTransmission.Core.Enums;
+using PsTransmission.Core.Services.Transmission;
+using Transmission.Base;
 
-namespace TransmissionManager.Torrents
+namespace Transmission.Torrents
 {
     [Cmdlet(VerbsCommon.Move, "TransmissionTorrentsQueue", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     public class MoveTransmissionTorrentsQueueCmdlet : BaseTransmissionCmdlet

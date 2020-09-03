@@ -1,6 +1,6 @@
-﻿using PsTransmissionManager.Core.Models;
+﻿using PsTransmission.Core.Models;
 
-namespace PsTransmissionManager.Core.Components
+namespace PsTransmission.Core.Components
 {
     /// <summary>
     /// The static credentials used by the PsTransmissionManager module, set with the Set-TransmissionCredentials cmdlet.

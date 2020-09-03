@@ -1,4 +1,4 @@
-﻿namespace PsTransmissionManager.Core.Constants
+﻿namespace PsTransmission.Core.Constants
 {
     public static class ErrorMessages
     {

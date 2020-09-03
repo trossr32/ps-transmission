@@ -1,4 +1,4 @@
-﻿namespace PsTransmissionManager.Core.Enums
+﻿namespace PsTransmission.Core.Enums
 {
     public enum MoveInQueue
     {

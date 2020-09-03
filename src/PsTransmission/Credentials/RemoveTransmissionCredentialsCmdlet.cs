@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Management.Automation;
-using PsTransmissionManager.Core.Components;
-using PsTransmissionManager.Core.Services;
+using PsTransmission.Core.Components;
+using PsTransmission.Core.Services;
 
-namespace TransmissionManager.Credentials
+namespace Transmission.Credentials
 {
     [Cmdlet(VerbsCommon.Remove, "TransmissionCredentials", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     public class RemoveTransmissionCredentialsCmdlet : Cmdlet

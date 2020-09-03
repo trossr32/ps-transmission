@@ -1,4 +1,4 @@
-﻿namespace PsTransmissionManager.Core.Models
+﻿namespace PsTransmission.Core.Models
 {
     public class TransmissionCredentials
     {

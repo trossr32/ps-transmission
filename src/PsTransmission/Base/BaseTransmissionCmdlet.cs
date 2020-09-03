@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Management.Automation;
 using System.Threading.Tasks;
-using PsTransmissionManager.Core.Components;
-using PsTransmissionManager.Core.Services;
+using PsTransmission.Core.Components;
+using PsTransmission.Core.Services;
 
-namespace TransmissionManager.Base
+namespace Transmission.Base
 {
     public abstract class BaseTransmissionCmdlet : Cmdlet
     {

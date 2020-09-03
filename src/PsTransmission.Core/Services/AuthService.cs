@@ -3,9 +3,9 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using PsTransmissionManager.Core.Models;
+using PsTransmission.Core.Models;
 
-namespace PsTransmissionManager.Core.Services
+namespace PsTransmission.Core.Services
 {
     public static class AuthService
     {
