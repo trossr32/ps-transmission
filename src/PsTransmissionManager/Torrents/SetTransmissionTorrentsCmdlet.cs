@@ -12,85 +12,85 @@ namespace TransmissionManager.Torrents
     [Cmdlet(VerbsCommon.Set, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     public class SetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<int> TorrentIds { get; set; }
         
         /// <summary>
         /// This torrent's bandwidth
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public int? BandwidthPriority { get; set; }
 
         /// <summary>
         /// Maximum download speed (KBps)
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public int? DownloadLimit { get; set; }
 
         /// <summary>
         /// Download limit is honoured
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public bool? DownloadLimited { get; set; }
 
         /// <summary>
         /// Session upload limits are honoured
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public bool? HonoursSessionLimits { get; set; }
 
         /// <summary>
         /// New location of the torrent's content
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public string Location { get; set; }
 
         /// <summary>
         /// Maximum number of peers
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public int? PeerLimit { get; set; }
 
         /// <summary>
         /// Position of this torrent in its queue [0...n)
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public int? QueuePosition { get; set; }
 
         /// <summary>
         /// Torrent-level number of minutes of seeding inactivity
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public int? SeedIdleLimit { get; set; }
 
         /// <summary>
         /// Which seeding inactivity to use
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public int? SeedIdleMode { get; set; }
 
         /// <summary>
         /// Torrent-level seeding ratio
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public double? SeedRatioLimit { get; set; }
 
         /// <summary>
         /// Which ratio to use. 
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public int? SeedRatioMode { get; set; }
 
         /// <summary>
         /// Maximum upload speed (KBps)
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public int? UploadLimit { get; set; }
 
         /// <summary>
         /// Upload limit is honoured
         /// </summary>
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false)]
         public bool? UploadLimited { get; set; }
 
         /// <summary>

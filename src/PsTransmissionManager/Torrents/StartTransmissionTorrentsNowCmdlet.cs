@@ -11,7 +11,7 @@ namespace TransmissionManager.Torrents
     [Cmdlet(VerbsLifecycle.Start, "TransmissionTorrentsNow", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     public class StartTransmissionTorrentsNowCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<int> TorrentIds { get; set; }
         
         [Parameter(Mandatory = false)]

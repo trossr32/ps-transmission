@@ -24,6 +24,8 @@ namespace PsTransmissionManager.Core.Services.Transmission
         /// <returns></returns>
         public async Task<Torrent[]> GetTorrents(List<int> torrentIds = null)
         {
+            string[] includeFields;
+
             return torrentIds != null
                 ? (await _client.TorrentGetAsync(TorrentFields.AllFields, torrentIds.ToArray()))?.TorrentList
                 : (await _client.TorrentGetAsync(TorrentFields.AllFields))?.TorrentList;

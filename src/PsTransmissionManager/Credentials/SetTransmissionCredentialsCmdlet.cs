@@ -10,19 +10,20 @@ namespace TransmissionManager.Credentials
     [Cmdlet(VerbsCommon.Set, "TransmissionCredentials", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     public class SetTransmissionCredentialsCmdlet : Cmdlet
     {
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         [Alias("H")]
         public string Host { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false, Position = 1)]
         [Alias("U")]
         public string User { get; set; }
 
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = false, Position = 2)]
         [Alias("P")]
         public string Password { get; set; }
 
         [Parameter(Mandatory = false)]
+        [Alias("S")]
         public SwitchParameter StorePermanent { get; set; }
 
         /// <summary>

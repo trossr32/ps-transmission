@@ -16,4 +16,10 @@
     <ProjectReference Include="..\Transmission.NetCore.Client\Transmission.NetCore.Client.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="TransmissionManager.dll-Help.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

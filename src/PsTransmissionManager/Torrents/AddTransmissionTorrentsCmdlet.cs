@@ -11,15 +11,16 @@ using TransmissionManager.Base;
 namespace TransmissionManager.Torrents
 {
     [Cmdlet(VerbsCommon.Add, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    [OutputType(typeof(AddTorrentsResponse))]
     public class AddTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<string> Urls { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, Position = 1)]
         public List<string> Files { get; set; }
 
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, Position = 2)]
         public List<string> MetaInfos { get; set; }
 
         [Parameter(Mandatory = false)]
@@ -76,9 +77,14 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void ProcessRecord()
         {
-            _urls.AddRange(Urls);
-            _files.AddRange(Files);
-            _metas.AddRange(MetaInfos);
+            if (Urls != null)
+                _urls.AddRange(Urls);
+
+            if (Files != null)
+                _files.AddRange(Files);
+
+            if (MetaInfos != null)
+                _metas.AddRange(MetaInfos);
         }
 
         /// <summary>
@@ -127,7 +133,9 @@ namespace TransmissionManager.Torrents
                         PriorityLow = (PriorityLow ?? new List<int>()).Any() ? PriorityLow.ToArray() : null,
                         PriorityNormal = (PriorityNormal ?? new List<int>()).Any() ? PriorityNormal.ToArray() : null
                     })
-                    .Union(_metas.Select(m => new NewTorrent
+                    .ToList();
+
+                newTorrents.AddRange(_metas.Select(m => new NewTorrent
                     {
                         Cookies = !string.IsNullOrWhiteSpace(Cookies) ? Cookies : null,
                         DownloadDirectory = !string.IsNullOrWhiteSpace(DownloadDirectory) ? DownloadDirectory : null,
@@ -141,8 +149,8 @@ namespace TransmissionManager.Torrents
                         PriorityHigh = (PriorityHigh ?? new List<int>()).Any() ? PriorityHigh.ToArray() : null,
                         PriorityLow = (PriorityLow ?? new List<int>()).Any() ? PriorityLow.ToArray() : null,
                         PriorityNormal = (PriorityNormal ?? new List<int>()).Any() ? PriorityNormal.ToArray() : null
-                    }))
-                    .ToList();
+                    })
+                    .ToList());
 
                 AddTorrentsResponse response = Task.Run(async () => await torrentSvc.AddTorrents(newTorrents)).Result;
 

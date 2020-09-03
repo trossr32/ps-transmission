@@ -11,10 +11,10 @@ namespace TransmissionManager.Torrents
     [Cmdlet(VerbsCommon.Set, "TransmissionTorrentsLocation", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     public class SetTransmissionTorrentsLocationCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<int> TorrentIds { get; set; }
         
-        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = true)]
         public string Location { get; set; }
 
         [Parameter(Mandatory = false)]

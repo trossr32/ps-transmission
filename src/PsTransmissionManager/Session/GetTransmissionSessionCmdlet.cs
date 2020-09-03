@@ -9,6 +9,7 @@ using TransmissionManager.Base;
 namespace TransmissionManager.Session
 {
     [Cmdlet(VerbsCommon.Get, "TransmissionSession", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    [OutputType(typeof(SessionInformation))]
     public class GetTransmissionSessionCmdlet : BaseTransmissionCmdlet
     {
         [Parameter(Mandatory = false)]

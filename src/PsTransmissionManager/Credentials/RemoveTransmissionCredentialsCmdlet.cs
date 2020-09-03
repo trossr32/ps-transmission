@@ -9,6 +9,7 @@ namespace TransmissionManager.Credentials
     public class RemoveTransmissionCredentialsCmdlet : Cmdlet
     {
         [Parameter(Mandatory = false)]
+        [Alias("D")]
         public SwitchParameter DeletePermanent { get; set; }
 
         /// <summary>

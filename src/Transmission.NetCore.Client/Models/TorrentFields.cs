@@ -330,7 +330,7 @@
         /// <summary>
         /// uploadLimited
         /// </summary>
-        public const string UploadLimited = "uploadedEver";
+        public const string UploadLimited = "uploadLimited";
 
         /// <summary>
         /// uploadRatio
@@ -428,7 +428,7 @@
                     UploadRatio,
                     Wanted,
                     WebSeeds,
-                    WebSeedsSendingToUs,
+                    WebSeedsSendingToUs
                     #endregion
                 };
             }

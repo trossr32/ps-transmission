@@ -11,7 +11,7 @@ namespace TransmissionManager.Torrents
     [Cmdlet(VerbsLifecycle.Start, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     public class StartTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<int> TorrentIds { get; set; }
 
         [Parameter(Mandatory = false)]
@@ -23,12 +23,16 @@ namespace TransmissionManager.Torrents
         [Parameter(Mandatory = false)]
         public SwitchParameter Incomplete { get; set; }
 
+        private List<int> _torrentIds;
+
         /// <summary>
         /// Implements the <see cref="BeginProcessing"/> method for <see cref="StartTransmissionTorrentsCmdlet"/>.
         /// </summary>
         protected override void BeginProcessing()
         {
             base.BeginProcessing();
+
+            _torrentIds = new List<int>();
         }
 
         /// <summary>
@@ -36,7 +40,8 @@ namespace TransmissionManager.Torrents
         /// </summary>
         protected override void ProcessRecord()
         {
-
+            if (TorrentIds != null)
+                _torrentIds.AddRange(TorrentIds);
         }
 
         /// <summary>

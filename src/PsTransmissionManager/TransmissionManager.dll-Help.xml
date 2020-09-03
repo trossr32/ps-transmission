@@ -1,0 +1,2053 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<helpItems xmlns="http://msh" schema="maml">
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Set-TransmissionCredentials</command:name>
+      <command:verb>Set</command:verb>
+      <command:noun>TransmissionCredentials</command:noun>
+      <maml:description>
+        <maml:para>
+          Register Transmission credentials for the session. Required before running any Transmission cmdlets.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Register Transmission credentials for the session. Required before running any Transmission cmdlets.
+      </maml:para>
+      <maml:para>
+        Optionally store credentials permanently in an encrypted locally stored file to remove the need for credentials to be set in each session by supplying the StorePermanent switch parameter.
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="false" variableLength="true" position="0" aliases="H">
+        <maml:name>Host</maml:name>
+        <maml:description>
+          <maml:para>
+            The URL of your Transmission API instance, which will look something like: http://192.168.0.1:9091/transmission/rpc
+          </maml:para>
+          <maml:para>
+            The Host is only validated to be a non-empty string, so please ensure you enter the URL correctly.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">String</command:parameterValue>
+        <dev:type>String</dev:type>
+        <dev:defaultvalue>null</dev:defaultvalue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true" position="1" aliases="U">
+        <maml:name>User</maml:name>
+        <maml:description>
+          <maml:para>
+            The user name used to login to your Transmission instance, if applicable.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">String</command:parameterValue>
+        <dev:type>String</dev:type>
+        <dev:defaultvalue>null</dev:defaultvalue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true" position="2" aliases="P">
+        <maml:name>Password</maml:name>
+        <maml:description>
+          <maml:para>
+            The password used to login to your Transmission instance, if applicable.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">String</command:parameterValue>
+        <dev:type>String</dev:type>
+        <dev:defaultvalue>null</dev:defaultvalue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false" aliases="S">
+        <maml:name>StorePermanent</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied credentials will be stored permanently in an encrypted local file that removes the need for credentials to be set in each session.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Register credentials in session</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Set-TransmissionCredentials -Host "http://192.168.0.1:9091/transmission/rpc" -User "user" -Password "12345"</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Credentials will be registered for the lifetime of the session.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Register credentials in session and store permanently</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Set-TransmissionCredentials -Host "http://192.168.0.1:9091/transmission/rpc" -User "user" -Password "12345" -StorePermanent</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Credentials will be registered for the lifetime of the session and stored locally so that this command will not need to be run again.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-TransmissionCredentials</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>TransmissionCredentials</command:noun>
+      <maml:description>
+        <maml:para>
+          Remove previously registered Transmission credentials.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Remove previously registered Transmission credentials for the session.
+      </maml:para>
+      <maml:para>
+        Optionally remove stored credentials from an encrypted local file by supplying the DeletePermanent switch parameter.
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="false" pipelineInput="false" variableLength="false" aliases="D">
+        <maml:name>DeletePermanent</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied any credentials stored permanently in an encrypted local file will be deleted.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Remove previously registered credentials from session</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Remove-TransmissionCredentials</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Previously registered credentials will be removed.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Remove previously registered credentials from session and those stored locally</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Remove-TransmissionCredentials -DeletePermanent</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Previously registered credentials will be removed from the session and from the encrypted local file.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Close-TransmissionSession</command:name>
+      <command:verb>Close</command:verb>
+      <command:noun>TransmissionSession</command:noun>
+      <maml:description>
+        <maml:para>
+          Tells the Transmission session to shut down.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Tells the Transmission session to shut down.
+      </maml:para>
+      <maml:para>
+        Calls the 'session-close' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+      <maml:para>
+        Once shut down there is no way to restart Transmission via the API.
+      </maml:para>
+    </maml:description>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Shut down Transmission</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Close-TransmissionSession</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Transmission will be shut down.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-TransmissionSession</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>TransmissionSession</command:noun>
+      <maml:description>
+        <maml:para>
+          Gets Transmission session information.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Gets Transmission session information.
+      </maml:para>
+      <maml:para>
+        Calls the 'session-get' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Json</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the data will be output as a JSON string.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Get session information</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Get-TransmissionSession</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Retrieves the session information.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Get session information as JSON</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Get-TransmissionSession -Json</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Retrieves the session information as a JSON string.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-TransmissionSessionStatistics</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>TransmissionSessionStatistics</command:noun>
+      <maml:description>
+        <maml:para>
+          Gets Transmission session statistics.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Gets Transmission session statistics.
+      </maml:para>
+      <maml:para>
+        Calls the 'session-stats' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Json</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the data will be output as a JSON string.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Get session statistics</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Get-TransmissionSessionStatistics</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Retrieves the session statistics.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Get session statistics as JSON</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Get-TransmissionSessionStatistics -Json</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Retrieves the session statistics as a JSON string.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Test-TransmissionPort</command:name>
+      <command:verb>Test</command:verb>
+      <command:noun>TransmissionPort</command:noun>
+      <maml:description>
+        <maml:para>
+          Tests to see if your incoming peer port is accessible from the outside world.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Tests to see if your incoming peer port is accessible from the outside world.
+      </maml:para>
+      <maml:para>
+        Calls the 'port-test' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>AsBool</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the response will be a boolean, otherwise a success message or a terminating error.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Test port</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Test-TransmissionPort</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Test port and return a success message or throw a terminating error.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Test port and return a boolean</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Test-TransmissionPort -AsBool</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Test port and return a boolean.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Update-TransmissionBlockLists</command:name>
+      <command:verb>Update</command:verb>
+      <command:noun>TransmissionBlockLists</command:noun>
+      <maml:description>
+        <maml:para>
+          Updates blocklists.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Updates blocklists.
+      </maml:para>
+      <maml:para>
+        Calls the 'blocklist-update' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>AsBool</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the response will be a boolean, otherwise a success message or a terminating error.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Update blocklists</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Update-TransmissionBlockLists</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Update blocklists and return a success message or throw a terminating error.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Update blocklists and return a boolean</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Update-TransmissionBlockLists -AsBool</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Update blocklists and return a boolean.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Add-TransmissionTorrents</command:name>
+      <command:verb>Add</command:verb>
+      <command:noun>TransmissionTorrents</command:noun>
+      <maml:description>
+        <maml:para>
+          Adds torrents to Transmission.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Adds torrents to Transmission. Add via URL (i.e. magnet link), .torrent file or base64 encoded .torrent content.
+      </maml:para>
+      <maml:para>
+        One of the following parameters must be supplied: Urls, Files or MetaInfos.
+      </maml:para>
+      <maml:para>
+        If multiple torrents are supplied, then NONE of the following parameters should be supplied: FilesWanted, FilesUnwanted, PriorityHigh, PriorityLow, PriorityNormal.
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-add' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="false" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>Urls</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of URLs.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">List&lt;string&gt;</command:parameterValue>
+        <dev:type>List&lt;string&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="true" variableLength="true" position="1">
+        <maml:name>Files</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of .torrent files.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">List&lt;string&gt;</command:parameterValue>
+        <dev:type>List&lt;string&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="true" variableLength="true" position="2">
+        <maml:name>MetaInfos</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of base64 encoded .torrent content.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">List&lt;string&gt;</command:parameterValue>
+        <dev:type>List&lt;string&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>Cookies</maml:name>
+        <maml:description>
+          <maml:para>
+            Pointer to a string of one or more cookies. The format should be NAME=CONTENTS, where NAME is the cookie name and CONTENTS is what the cookie should contain. Set multiple cookies like this: "name1=content1; name2=content2;" etc.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">String</command:parameterValue>
+        <dev:type>String</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>DownloadDirectory</maml:name>
+        <maml:description>
+          <maml:para>
+            Path to download the torrent to.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">String</command:parameterValue>
+        <dev:type>String</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Paused</maml:name>
+        <maml:description>
+          <maml:para>
+            If true, don't start the torrent.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+        <dev:type>Boolean</dev:type>
+        <dev:defaultValue>false</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PeerLimit</maml:name>
+        <maml:description>
+          <maml:para>
+            Maximum number of peers.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>BandwidthPriority</maml:name>
+        <maml:description>
+          <maml:para>
+            Torrent's bandwidth priority.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>FilesWanted</maml:name>
+        <maml:description>
+          <maml:para>
+            Indices of file(s) to download.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>FilesUnwanted</maml:name>
+        <maml:description>
+          <maml:para>
+            Indices of file(s) to not download.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PriorityHigh</maml:name>
+        <maml:description>
+          <maml:para>
+            Indices of high priority file(s).
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PriorityLow</maml:name>
+        <maml:description>
+          <maml:para>
+            Indices of low priority file(s).
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PriorityNormal</maml:name>
+        <maml:description>
+          <maml:para>
+            Indices of normal priority file(s).
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Json</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the data will be output as a JSON string.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Add torrent from magnet link</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Add-TransmissionTorrents -Urls @("magnet:?xt=urn:btih:D540FC48EB12F2833163EED6421D449DD8F1CE1F&amp;dn=Ubuntu+desktop+19.04+%2864bit%29")</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Adds the torrent to Transmission.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Add torrent from pipeline, pause download and get response as JSON</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@("magnet:?xt=urn:btih:D540FC48EB12F2833163EED6421D449DD8F1CE1F&amp;dn=Ubuntu+desktop+19.04+%2864bit%29") | Add-TransmissionTorrents -Json -Paused $true</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Adds the torrent to Transmission, pauses download and returns response as JSON.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Assert-TransmissionTorrentsVerified</command:name>
+      <command:verb>Assert</command:verb>
+      <command:noun>TransmissionTorrentsVerified</command:noun>
+      <maml:description>
+        <maml:para>
+          Verify torrents.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Verify torrents.
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-verify' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentIds</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of torrent ids.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>AsBool</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the response will be a boolean, otherwise a success message or a terminating error.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Verify torrents and return a success message or throw a terminating error</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Assert-TransmissionTorrentsVerified -TorrentIds @(1)</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Verifies torrents and returns a success message or throws a terminating error.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Verify torrents using pipeline and return a boolean</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@(1) | Assert-TransmissionTorrentsVerified -AsBool</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Verifies torrents and returns a boolean.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-TransmissionTorrents</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>TransmissionTorrents</command:noun>
+      <maml:description>
+        <maml:para>
+          Get torrents.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Get torrents. If no torrent ids are supplied then all torrents will be returned. Alternatively the Completed and Incomplete switch parameters will return torrents that have finished downloading or are still downloading (based on download percent).
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-get' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentIds</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of torrent ids.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Completed</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all completed torrents will be retrieved.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Incomplete</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all in progress torrents will be retrieved.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Json</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the data will be output as a JSON string.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Get all torrents</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Get-TransmissionTorrents</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Retrieves all torrents.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Get all completed torrents and return as JSON</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Get-TransmissionTorrents -Completed -Json</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Retrieves all completed torrents and returns as JSON.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 3: Get torrents by id using the pipeline</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@(1,2) | Get-TransmissionTorrents</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Retrieves all torrents with ids 1 and 2.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Invoke-TransmissionTorrentsReannounce</command:name>
+      <command:verb>Invoke</command:verb>
+      <command:noun>TransmissionTorrentsReannounce</command:noun>
+      <maml:description>
+        <maml:para>
+          Re-announce torrents (i.e. ask tracker for more peers).
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Re-announce torrents (i.e. ask tracker for more peers).
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-reannounce' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentIds</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of torrent ids.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>AsBool</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the response will be a boolean, otherwise a success message or a terminating error.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Re-announce torrents and return a success message or throw a terminating error</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Invoke-TransmissionTorrentsReannounce -TorrentIds @(1)</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Re-announces torrents and returns a success message or throws a terminating error.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Re-announce torrents using pipeline and return a boolean</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@(1) | Invoke-TransmissionTorrentsReannounce -AsBool</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Re-announces torrents and returns a boolean.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Move-TransmissionTorrentsQueue</command:name>
+      <command:verb>Move</command:verb>
+      <command:noun>TransmissionTorrentsQueue</command:noun>
+      <maml:description>
+        <maml:para>
+          Move torrents in the queue.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Move torrents in the queue.
+      </maml:para>
+      <maml:para>
+        One of the following parameters needs to be supplied alongside the TorrentIds parameter: Up, Down, Top, Bottom.
+      </maml:para>
+      <maml:para>
+        Calls the 'queue-move-top', 'queue-move-up', 'queue-move-down' and 'queue-move-bottom' endpoints: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentIds</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of torrent ids.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Up</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the torrent(s) will be moved up the queue.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Down</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the torrent(s) will be moved down the queue.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Top</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the torrent(s) will be moved to the top of the queue.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Bottom</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the torrent(s) will be moved to the bottom of the queue.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Move torrent up the queue</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Move-TransmissionTorrentsQueue -TorrentIds @(1) -Up</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Torrent is moved up the queue.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Move torrents to the bottom of the queue using pipeline</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@(1,2) | Move-TransmissionTorrentsQueue -Bottom</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Torrents are moved to the bottom of the queue.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+                      xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+                      xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+                      xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+                      xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-TransmissionTorrents</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>TransmissionTorrents</command:noun>
+      <maml:description>
+        <maml:para>
+          Remove torrents.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Remove torrents. The All, Completed and Incomplete switch parameters will return all torrents, torrents that have finished downloading or are still downloading (based on download percent).
+      </maml:para>
+      <maml:para>
+        If the DeleteData switch is supplied then any local data will be deleted when the torrent is removed.
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-remove' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentIds</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of torrent ids.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>All</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all torrents will be removed.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Completed</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all completed torrents will be removed.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Incomplete</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all in progress torrents will be removed.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>DeleteData</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied any local data will also be deleted when removing the torrent.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Remove all torrents</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Remove-TransmissionTorrents -All</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Removes all torrents.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Remove all completed torrents and delete local data</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Remove-TransmissionTorrents -Completed -DeleteData</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Removes all completed torrents and deletes local data.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 3: Remove torrents by id using the pipeline</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@(1,2) | Remove-TransmissionTorrents</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Removes all torrents with ids 1 and 2.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Rename-TransmissionTorrentsPath</command:name>
+      <command:verb>Rename</command:verb>
+      <command:noun>TransmissionTorrentsPath</command:noun>
+      <maml:description>
+        <maml:para>
+          Rename a torrent's path.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Rename a torrent's path.
+      </maml:para>
+      <maml:para>
+        For more information on the use of this function, see the transmission.h documentation of tr_torrentRenamePath(). In particular, note that if this call succeeds you'll want to update the torrent's "files" and "name" field with torrent-get.
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-rename-path' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentId</maml:name>
+        <maml:description>
+          <maml:para>
+            Torrent id.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="1">
+        <maml:name>TorrentPath</maml:name>
+        <maml:description>
+          <maml:para>
+            Torrent path.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+        <dev:type>string</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="2">
+        <maml:name>TorrentName</maml:name>
+        <maml:description>
+          <maml:para>
+            Torrent name.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">string</command:parameterValue>
+        <dev:type>string</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Json</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the data will be output as a JSON string.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Rename torrent path</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Rename-TransmissionTorrentsPath -TorrentId 1 -TorrentPath "/some_path" -TorrentName "some_name"</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Rename torrent path.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Set-TransmissionTorrents</command:name>
+      <command:verb>Set</command:verb>
+      <command:noun>TransmissionTorrents</command:noun>
+      <maml:description>
+        <maml:para>
+          Update torrent.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Update torrent.
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-set' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentIds</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of torrent ids.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>BandwidthPriority</maml:name>
+        <maml:description>
+          <maml:para>
+            Torrent's bandwidth priority.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>DownloadLimit</maml:name>
+        <maml:description>
+          <maml:para>
+            Maximum download speed (KBps).
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>DownloadLimited</maml:name>
+        <maml:description>
+          <maml:para>
+            Download limit is honoured.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>HonoursSessionLimits</maml:name>
+        <maml:description>
+          <maml:para>
+            Session upload limits are honoured.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>      
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>Location</maml:name>
+        <maml:description>
+          <maml:para>
+            New location of the torrent's content.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">string</command:parameterValue>
+        <dev:type>string</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PeerLimit</maml:name>
+        <maml:description>
+          <maml:para>
+            Maximum number of peers.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>QueuePosition</maml:name>
+        <maml:description>
+          <maml:para>
+            Position of this torrent in its queue [0...n).
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SeedIdleLimit</maml:name>
+        <maml:description>
+          <maml:para>
+            Torrent-level number of minutes of seeding inactivity.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SeedIdleMode</maml:name>
+        <maml:description>
+          <maml:para>
+            Which seeding inactivity to use.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SeedRatioLimit</maml:name>
+        <maml:description>
+          <maml:para>
+            Torrent-level seeding ratio.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">double</command:parameterValue>
+        <dev:type>double</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SeedRatioMode</maml:name>
+        <maml:description>
+          <maml:para>
+            Which ratio to use.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>UploadLimit</maml:name>
+        <maml:description>
+          <maml:para>
+            Maximum upload speed (KBps).
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>UploadLimited</maml:name>
+        <maml:description>
+          <maml:para>
+            Upload limit is honoured.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>TrackerAdd</maml:name>
+        <maml:description>
+          <maml:para>
+            Strings of announce URLs to add.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">List&lt;string&gt;</command:parameterValue>
+        <dev:type>List&lt;string&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>TrackerRemove</maml:name>
+        <maml:description>
+          <maml:para>
+            Ids of trackers to remove.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>AsBool</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the response will be a boolean, otherwise a success message or a terminating error.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Update torrent upload limit to 500 KBps</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Set-TransmissionTorrents -TorrentIds @(1) -UploadLimit 500</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Updates the torrent's upload limit to 500 KBps.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Update torrent upload limit to 500 KBps from pipeline</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@(1) | Set-TransmissionTorrents -UploadLimit 500</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Updates the torrent's upload limit to 500 KBps.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Set-TransmissionTorrentsLocation</command:name>
+      <command:verb>Set</command:verb>
+      <command:noun>TransmissionTorrentsLocation</command:noun>
+      <maml:description>
+        <maml:para>
+          Move a torrent.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Move a torrent.
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-set-location' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentIds</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of torrent ids.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>Location</maml:name>
+        <maml:description>
+          <maml:para>
+            New torrent location.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">string</command:parameterValue>
+        <dev:type>string</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Move</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied move torrent from previous location, otherwise search "location" for files.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>AsBool</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied the response will be a boolean, otherwise a success message or a terminating error.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Set torrent location</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Set-TransmissionTorrentsLocation -TorrentIds @(1) -Location "some_path"</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Sets the torrent's location.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Set torrent location from pipeline, move from previous location and return results as a bool</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@(1) | Set-TransmissionTorrentsLocation -Location "some_path" -Move -AsBool</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Sets the torrent's location and moves from previous location.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Start-TransmissionTorrents</command:name>
+      <command:verb>Start</command:verb>
+      <command:noun>TransmissionTorrents</command:noun>
+      <maml:description>
+        <maml:para>
+          Start torrents.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Start torrents. The All, Completed and Incomplete switch parameters will return all torrents, torrents that have finished downloading or are still downloading (based on download percent).
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-start' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentIds</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of torrent ids.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>All</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all torrents will be started.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Completed</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all completed torrents will be started.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Incomplete</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all in progress torrents will be started.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Start all torrents</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Start-TransmissionTorrents -All</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Starts all torrents.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Start all completed torrents</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Start-TransmissionTorrents -Completed</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Starts all completed torrents.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 3: Start torrents by id using the pipeline</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@(1,2) | Start-TransmissionTorrents</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Starts all torrents with ids 1 and 2.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Start-TransmissionTorrentsNow</command:name>
+      <command:verb>Start</command:verb>
+      <command:noun>TransmissionTorrentsNow</command:noun>
+      <maml:description>
+        <maml:para>
+          Start torrents now.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Start torrents now. 'start now' differs from 'start' because it forces torrents to start even if they're queued.
+      </maml:para>
+      <maml:para>
+        The All, Completed and Incomplete switch parameters will return all torrents, torrents that have finished downloading or are still downloading (based on download percent).
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-start-now' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentIds</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of torrent ids.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>All</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all torrents will be started.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Completed</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all completed torrents will be started.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Incomplete</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all in progress torrents will be started.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Start all torrents now</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Start-TransmissionTorrentsNow -All</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Starts all torrents now.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Start all completed torrents now</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Start-TransmissionTorrentsNow -Completed</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Starts all completed torrents now.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 3: Start torrents now by id using the pipeline</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@(1,2) | Start-TransmissionTorrentsNow</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Starts all torrents with ids 1 and 2 now.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Stop-TransmissionTorrents</command:name>
+      <command:verb>Stop</command:verb>
+      <command:noun>TransmissionTorrents</command:noun>
+      <maml:description>
+        <maml:para>
+          Stop torrents.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Stop torrents. The All, Completed and Incomplete switch parameters will return all torrents, torrents that have finished downloading or are still downloading (based on download percent).
+      </maml:para>
+      <maml:para>
+        Calls the 'torrent-stop' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="true" pipelineInput="true" variableLength="true" position="0">
+        <maml:name>TorrentIds</maml:name>
+        <maml:description>
+          <maml:para>
+            Array of torrent ids.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="false">List&lt;int&gt;</command:parameterValue>
+        <dev:type>List&lt;int&gt;</dev:type>
+        <dev:defaultValue>null</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>All</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all torrents will be stopped.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Completed</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all completed torrents will be stopped.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Incomplete</maml:name>
+        <maml:description>
+          <maml:para>
+            If supplied all in progress torrents will be stopped.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Stop all torrents</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Stop-TransmissionTorrents -All</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Stops all torrents.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Stop all completed torrents</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Stop-TransmissionTorrents -Completed</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Stops all completed torrents.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 3: Stop torrents by id using the pipeline</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>@(1,2) | Stop-TransmissionTorrents</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Stops all torrents with ids 1 and 2.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+</helpItems>

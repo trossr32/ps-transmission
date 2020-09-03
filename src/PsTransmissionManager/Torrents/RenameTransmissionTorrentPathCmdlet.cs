@@ -9,15 +9,16 @@ using TransmissionManager.Base;
 namespace TransmissionManager.Torrents
 {
     [Cmdlet(VerbsCommon.Rename, "TransmissionTorrentsPath", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    [OutputType(typeof(RenamedTorrent))]
     public class RenameTransmissionTorrentPathCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 0)]
         public int TorrentId { get; set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 1)]
         public string TorrentPath { get; set; }
 
-        [Parameter(Mandatory = true)]
+        [Parameter(Mandatory = true, Position = 2)]
         public string TorrentName { get; set; }
 
         [Parameter(Mandatory = false)]

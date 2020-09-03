@@ -11,7 +11,7 @@ namespace TransmissionManager.Torrents
     [Cmdlet(VerbsLifecycle.Assert, "TransmissionTorrentsVerified", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
     public class AssertTransmissionTorrentsVerifiedCmdlet : BaseTransmissionCmdlet
     {
-        [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<int> TorrentIds { get; set; }
 
         [Parameter(Mandatory = false)]
@@ -47,7 +47,7 @@ namespace TransmissionManager.Torrents
             try
             {
                 // validate a torrent id has been supplied
-                if (!(TorrentIds ?? new List<int>()).Any())
+                if (!_torrentIds.Any())
                     ThrowTerminatingError(new ErrorRecord(new Exception("The TorrentIds parameter must be supplied."), null, ErrorCategory.InvalidArgument, null));
 
                 var torrentSvc = new TorrentService();

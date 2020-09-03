@@ -19,7 +19,7 @@ namespace PsTransmissionManager.Core.Services.Transmission
         /// <returns></returns>
         public async Task<bool> TestPort()
         {
-            return (await _client.PortTestAsync());
+            return await _client.PortTestAsync();
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace PsTransmissionManager.Core.Services.Transmission
         /// <returns>success flag and error message, if applicable</returns>
         public async Task<(bool success, string error)> UpdateBlockList()
         {
-            return (await _client.UpdateBlockListAsync());
+            return await _client.UpdateBlockListAsync();
         }
     }
 }
