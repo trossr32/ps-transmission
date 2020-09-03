@@ -30,7 +30,7 @@
     Copyright            = '(c) 2020 Rob Green. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description          = 'A Powershell module that exposes the Transmission RPC API.'
+    Description          = 'A Powershell module that integrates with the Transmission RPC API.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     PowerShellVersion    = '5.1'
