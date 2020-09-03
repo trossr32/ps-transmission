@@ -1,4 +1,8 @@
-# TransmissionManager
+# PsTransmission
+
+[![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/Transmission?label=Transmission&logo=powershell&style=plastic)](https://www.powershellgallery.com/packages/Transmission)
+[![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/Transmission?style=plastic)](https://www.powershellgallery.com/packages/Transmission)
+
 A Powershell module that integrates with the Transmission RPC API.
 
 Available in the [Powershell Gallery](https://www.powershellgallery.com/packages/Transmission)
