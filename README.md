@@ -25,24 +25,47 @@ Before any of the Transmission cmdlets can be run, both your host and credential
 
 ```powershell
 Set-TransmissionCredentials -Host "http://192.168.0.1:9091/transmission/rpc" -User "user" -Password "password"
-Import-Module Transmission
 ```
 
-This registers your credentials for the duration of the session. Adding a -StorePermanent switch to the Set-TransmissionCredentials command will create an encrypted file saved on your machine that will obviate the need to set credentials with each new session.
+This registers your credentials for the duration of the session. Adding a -StorePermanent switch to the Set-TransmissionCredentials command will create an encrypted file saved on your machine that will obviate the need to set credentials with each new session:
 
-You can remove credentials at any time by using the Remove-TransmissionCredentials cmdlet. To remove a file created using the -StorePermanent switch run the Remove-TransmissionCredentials with a -DeletePermanent switch.
+```powershell
+Set-TransmissionCredentials -Host "http://192.168.0.1:9091/transmission/rpc" -User "user" -Password "password" -StorePermanent
+```
+
+You can remove credentials at any time by using the Remove-TransmissionCredentials cmdlet. To remove a file created using the -StorePermanent switch run the Remove-TransmissionCredentials with a -DeletePermanent switch:
+
+```powershell
+Remove-TransmissionCredentials -DeletePermanent
+```
 
 ## Included cmdlets
 
+### Credentials
+
 ```powershell
-Get-TransmissionConfig 
-Remove-TransmissionConfig
-Set-TransmissionConfig
+Set-TransmissionCredentials
+Remove-TransmissionCredentials
+```
+
+### Session
+
+```powershell
 Close-TransmissionSession
 Get-TransmissionSession
 Get-TransmissionSessionStatistics
+```
+
+### System
+
+```powershell
 Test-TransmissionPort
 Update-TransmissionBlockLists
+```
+
+### Torrents
+
+```powershell
 Add-TransmissionTorrents
 Assert-TransmissionTorrentsVerified
 Get-TransmissionTorrents

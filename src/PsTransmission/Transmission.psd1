@@ -12,7 +12,7 @@
     RootModule           = 'Transmission.dll'
 
     # Version number of this module.
-    ModuleVersion        = '1.0.0'
+    ModuleVersion        = '1.0.5'
 
     # Supported PSEditions
     CompatiblePSEditions = 'Desktop', 'Core'
@@ -73,9 +73,8 @@
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport      = @(
-                            'Get-TransmissionConfig', 
-                            'Remove-TransmissionConfig', 
-                            'Set-TransmissionConfig', 
+                            'Set-TransmissionCredentials', 
+                            'Remove-TransmissionCredentials',  
                             'Close-TransmissionSession', 
                             'Get-TransmissionSession', 
                             'Get-TransmissionSessionStatistics', 
@@ -122,7 +121,7 @@
             LicenseUri = 'https://github.com/trossr32/ps-transmission/blob/master/LICENSE'
 
             # A URL to the main website for this project.
-            ProjectUri = 'https://github.com/trossr32/ps-transmissionr'
+            ProjectUri = 'https://github.com/trossr32/ps-transmission'
 
             # A URL to an icon representing this module.
             IconUri    = 'https://github.com/trossr32/ps-transmission/blob/master/assets/images/ps7_icon_88.png'
