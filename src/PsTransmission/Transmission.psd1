@@ -12,10 +12,10 @@
     RootModule           = 'Transmission.dll'
 
     # Version number of this module.
-    ModuleVersion        = '1.0.5'
+    ModuleVersion        = '1.0.6'
 
     # Supported PSEditions
-    CompatiblePSEditions = 'Desktop', 'Core'
+    CompatiblePSEditions = 'Core'
 
     # ID used to uniquely identify this module
     GUID                 = '4890638d-8ea8-477c-ba30-b87536ede962'
@@ -33,7 +33,7 @@
     Description          = 'A Powershell module that integrates with the Transmission RPC API.'
 
     # Minimum version of the Windows PowerShell engine required by this module
-    PowerShellVersion    = '5.1'
+    PowerShellVersion    = '7'
 
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''
