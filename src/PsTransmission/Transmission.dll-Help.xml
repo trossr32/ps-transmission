@@ -440,6 +440,46 @@
     xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
     xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Invoke-TransmissionWeb</command:name>
+      <command:verb>Invoke</command:verb>
+      <command:noun>TransmissionWeb</command:noun>
+      <maml:description>
+        <maml:para>
+          Opens the transmission web UI in the default system browser.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Opens the transmission web UI in the default system browser.
+      </maml:para>
+    </maml:description>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Open web UI</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Invoke-TransmissionWeb</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Transmission web UI is opened in the system default browser.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission-manager</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Update-TransmissionBlockLists</command:name>
       <command:verb>Update</command:verb>
       <command:noun>TransmissionBlockLists</command:noun>

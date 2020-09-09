@@ -540,10 +540,10 @@ namespace Transmission.NetCore.Client
             }
             catch (FlurlHttpException e)
             {
-                if (e.Call.Response.StatusCode != HttpStatusCode.Conflict)
+                if (e.Call.Response.StatusCode != (int)HttpStatusCode.Conflict)
                     throw;
 
-                SessionId = e.Call.Response.GetHeaderValue("X-Transmission-Session-Id");
+                SessionId = e.Call.Response.Headers.FirstOrDefault("X-Transmission-Session-Id");
 
                 if (SessionId == null)
                     throw new Exception("Session id error");

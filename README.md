@@ -61,6 +61,7 @@ Get-TransmissionSessionStatistics
 ```powershell
 Test-TransmissionPort
 Update-TransmissionBlockLists
+Invoke-TransmissionWeb
 ```
 
 ### Torrents
