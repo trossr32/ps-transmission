@@ -33,7 +33,7 @@
     Description          = 'A Powershell module that integrates with the Transmission RPC API.'
 
     # Minimum version of the Windows PowerShell engine required by this module
-    PowerShellVersion    = '7'
+    PowerShellVersion    = '7.0'
 
     # Name of the Windows PowerShell host required by this module
     # PowerShellHostName = ''
@@ -80,6 +80,7 @@
                             'Get-TransmissionSessionStatistics', 
                             'Test-TransmissionPort', 
                             'Update-TransmissionBlockLists', 
+                            'Invoke-TransmissionWeb', 
                             'Add-TransmissionTorrents', 
                             'Assert-TransmissionTorrentsVerified', 
                             'Get-TransmissionTorrents', 
