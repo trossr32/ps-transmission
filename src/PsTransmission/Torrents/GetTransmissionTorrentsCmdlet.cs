@@ -10,19 +10,68 @@ using Transmission.NetCore.Client.Models;
 
 namespace Transmission.Torrents
 {
-    [Cmdlet(VerbsCommon.Get, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    /// <summary>
+    /// <para type="synopsis">
+    /// Get torrents.
+    /// </para>
+    /// <para type="description">
+    /// Get torrents. If no torrent ids are supplied then all torrents will be returned. Alternatively the Completed and
+    /// Incomplete switch parameters will return torrents that have finished downloading or are still downloading (based on download percent).
+    /// </para>
+    /// <para type="description">
+    /// Calls the 'torrent-get' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+    /// </para>
+    /// <example>
+    ///     <para>Example 1: Get all torrents</para>
+    ///     <code>PS C:\> Get-TransmissionTorrents</code>
+    ///     <remarks>Retrieves all torrents.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para>Example 2: Get all completed torrents and return as JSON</para>
+    ///     <code>PS C:\> Get-TransmissionTorrents -Completed -Json</code>
+    ///     <remarks>Retrieves all completed torrents and returns as JSON.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para>Example 3: Get torrents by id using the pipeline</para>
+    ///     <code>PS C:\> @(1,2) | Get-TransmissionTorrents</code>
+    ///     <remarks>Retrieves all torrents with ids 1 and 2.</remarks>
+    /// </example>
+    /// <para type="link" uri="(https://github.com/trossr32/ps-transmission)">[Github]</para>
+    /// <para type="link" uri="(https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt)">[Transmission RPC API]</para>
+    /// </summary>
+    [Cmdlet(VerbsCommon.Get, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission")]
     [OutputType(typeof(Torrent[]))]
     public class GetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// Array of torrent ids.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<int> TorrentIds { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied all completed torrents will be retrieved.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter Completed { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied all in progress torrents will be retrieved.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter Incomplete { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied the data will be output as a JSON string.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter Json { get; set; }
 

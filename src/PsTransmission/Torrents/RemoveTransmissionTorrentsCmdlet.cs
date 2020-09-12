@@ -8,21 +8,78 @@ using Transmission.Base;
 
 namespace Transmission.Torrents
 {
-    [Cmdlet(VerbsCommon.Remove, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    /// <summary>
+    /// <para type="synopsis">
+    /// Remove torrents.
+    /// </para>
+    /// <para type="description">
+    /// Remove torrents. The All, Completed and Incomplete switch parameters will return all torrents, torrents that
+    /// have finished downloading or are still downloading (based on download percent).
+    /// </para>
+    /// <para type="description">
+    /// If the DeleteData switch is supplied then any local data will be deleted when the torrent is removed.
+    /// </para>
+    /// <para type="description">
+    /// Calls the 'torrent-remove' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+    /// </para>
+    /// <example>
+    ///     <para>Example 1: Remove all torrents</para>
+    ///     <code>PS C:\> Remove-TransmissionTorrents -All</code>
+    ///     <remarks>Removes all torrents.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para>Example 2: Remove all completed torrents and delete local data</para>
+    ///     <code>PS C:\> Remove-TransmissionTorrents -Completed -DeleteData</code>
+    ///     <remarks>Removes all completed torrents and deletes local data.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para>Example 3: Remove torrents by id using the pipeline</para>
+    ///     <code>PS C:\> @(1,2) | Remove-TransmissionTorrents</code>
+    ///     <remarks>Removes all torrents with ids 1 and 2.</remarks>
+    /// </example>
+    /// <para type="link" uri="(https://github.com/trossr32/ps-transmission)">[Github]</para>
+    /// <para type="link" uri="(https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt)">[Transmission RPC API]</para>
+    /// </summary>
+    [Cmdlet(VerbsCommon.Remove, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission")]
     public class RemoveTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// Array of torrent ids.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<int> TorrentIds { get; set; }
-        
+
+        /// <summary>
+        /// <para type="description">
+        /// If supplied all torrents will be removed.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter All { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied all completed torrents will be removed.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter Completed { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied all in progress torrents will be removed.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter Incomplete { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied any local data will also be deleted when removing the torrent.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter DeleteData { get; set; }
 

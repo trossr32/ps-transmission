@@ -6,9 +6,37 @@ using Transmission.Base;
 
 namespace Transmission.System
 {
-    [Cmdlet(VerbsData.Update, "TransmissionBlockLists", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    /// <summary>
+    /// <para type="synopsis">
+    /// Updates blocklists.
+    /// </para>
+    /// <para type="description">
+    /// Updates blocklists.
+    /// </para>
+    /// <para type="description">
+    /// Calls the 'blocklist-update' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+    /// </para>
+    /// <example>
+    ///     <para>Example 1: Update blocklists</para>
+    ///     <code>PS C:\> Update-TransmissionBlockLists</code>
+    ///     <remarks>Update blocklists and return a success message or throw a terminating error.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para>Example 2: Update blocklists and return a boolean</para>
+    ///     <code>PS C:\> Update-TransmissionBlockLists -AsBool</code>
+    ///     <remarks>Update blocklists and return a boolean.</remarks>
+    /// </example>
+    /// <para type="link" uri="(https://github.com/trossr32/ps-transmission)">[Github]</para>
+    /// <para type="link" uri="(https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt)">[Transmission RPC API]</para>
+    /// </summary>
+    [Cmdlet(VerbsData.Update, "TransmissionBlockLists", HelpUri = "https://github.com/trossr32/ps-transmission")]
     public class UpdateTransmissionBlockListsCmdlet : BaseTransmissionCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// If supplied the response will be a boolean, otherwise a success message or a terminating error.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter AsBool { get; set; }
 
