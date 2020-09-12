@@ -8,12 +8,45 @@ using Transmission.Base;
 
 namespace Transmission.Torrents
 {
-    [Cmdlet(VerbsLifecycle.Assert, "TransmissionTorrentsVerified", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    /// <summary>
+    /// <para type="synopsis">
+    /// Verify torrents.
+    /// </para>
+    /// <para type="description">
+    /// Verify torrents.
+    /// </para>
+    /// <para type="description">
+    /// Calls the 'torrent-verify' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+    /// </para>
+    /// <example>
+    ///     <para>Example 1: Verify torrents and return a success message or throw a terminating error</para>
+    ///     <code>PS C:\> Assert-TransmissionTorrentsVerified -TorrentIds @(1)</code>
+    ///     <remarks>Verifies torrents and returns a success message or throws a terminating error.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para>Example 2: Verify torrents using pipeline and return a boolean</para>
+    ///     <code>PS C:\> @(1) | Assert-TransmissionTorrentsVerified -AsBool</code>
+    ///     <remarks>Verifies torrents and returns a boolean.</remarks>
+    /// </example>
+    /// <para type="link" uri="(https://github.com/trossr32/ps-transmission)">[Github]</para>
+    /// <para type="link" uri="(https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt)">[Transmission RPC API]</para>
+    /// </summary>
+    [Cmdlet(VerbsLifecycle.Assert, "TransmissionTorrentsVerified", HelpUri = "https://github.com/trossr32/ps-transmission")]
     public class AssertTransmissionTorrentsVerifiedCmdlet : BaseTransmissionCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// Array of torrent ids.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = true, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<int> TorrentIds { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied the response will be a boolean, otherwise a success message or a terminating error.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter AsBool { get; set; }
 

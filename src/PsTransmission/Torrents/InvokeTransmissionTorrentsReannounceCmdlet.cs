@@ -8,12 +8,45 @@ using Transmission.Base;
 
 namespace Transmission.Torrents
 {
-    [Cmdlet(VerbsLifecycle.Invoke, "TransmissionTorrentsReannounce", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    /// <summary>
+    /// <para type="synopsis">
+    /// Re-announce torrents (i.e. ask tracker for more peers).
+    /// </para>
+    /// <para type="description">
+    /// Re-announce torrents (i.e. ask tracker for more peers).
+    /// </para>
+    /// <para type="description">
+    /// Calls the 'torrent-reannounce' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+    /// </para>
+    /// <example>
+    ///     <para>Example 1: Re-announce torrents and return a success message or throw a terminating error</para>
+    ///     <code>PS C:\> Invoke-TransmissionTorrentsReannounce -TorrentIds @(1)</code>
+    ///     <remarks>Re-announces torrents and returns a success message or throws a terminating error.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para>Example 2: Re-announce torrents using pipeline and return a boolean</para>
+    ///     <code>PS C:\> @(1) | Invoke-TransmissionTorrentsReannounce -AsBool</code>
+    ///     <remarks>Re-announces torrents and returns a boolean.</remarks>
+    /// </example>
+    /// <para type="link" uri="(https://github.com/trossr32/ps-transmission)">[Github]</para>
+    /// <para type="link" uri="(https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt)">[Transmission RPC API]</para>
+    /// </summary>
+    [Cmdlet(VerbsLifecycle.Invoke, "TransmissionTorrentsReannounce", HelpUri = "https://github.com/trossr32/ps-transmission")]
     public class InvokeTransmissionTorrentsReannounceCmdlet : BaseTransmissionCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// Array of torrent ids.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<int> TorrentIds { get; set; }
-        
+
+        /// <summary>
+        /// <para type="description">
+        /// If supplied the response will be a boolean, otherwise a success message or a terminating error.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter AsBool { get; set; }
 

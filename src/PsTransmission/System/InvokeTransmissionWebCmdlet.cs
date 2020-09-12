@@ -8,7 +8,21 @@ using Transmission.Base;
 
 namespace Transmission.System
 {
-    [Cmdlet(VerbsLifecycle.Invoke, "TransmissionWeb", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    /// <summary>
+    /// <para type="synopsis">
+    /// Opens the transmission web UI in the default system browser.
+    /// </para>
+    /// <para type="description">
+    /// Opens the transmission web UI in the default system browser.
+    /// </para>
+    /// <example>
+    ///     <para>Example 1: Open web UI</para>
+    ///     <code>PS C:\> Invoke-TransmissionWeb</code>
+    ///     <remarks>Transmission web UI is opened in the system default browser.</remarks>
+    /// </example>
+    /// <para type="link" uri="(https://github.com/trossr32/ps-transmission)">[Github]</para>
+    /// </summary>
+    [Cmdlet(VerbsLifecycle.Invoke, "TransmissionWeb", HelpUri = "https://github.com/trossr32/ps-transmission")]
     public class InvokeTransmissionWebCmdlet : BaseTransmissionCmdlet
     {
         /// <summary>

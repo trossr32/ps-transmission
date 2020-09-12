@@ -6,9 +6,37 @@ using Transmission.Base;
 
 namespace Transmission.System
 {
-    [Cmdlet(VerbsDiagnostic.Test, "TransmissionPort", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    /// <summary>
+    /// <para type="synopsis">
+    /// Tests to see if your incoming peer port is accessible from the outside world.
+    /// </para>
+    /// <para type="description">
+    /// Tests to see if your incoming peer port is accessible from the outside world.
+    /// </para>
+    /// <para type="description">
+    /// Calls the 'port-test' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+    /// </para>
+    /// <example>
+    ///     <para>Example 1: Test port</para>
+    ///     <code>PS C:\> Test-TransmissionPort</code>
+    ///     <remarks>Test port and return a success message or throw a terminating error.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para></para>
+    ///     <code>PS C:\> Test-TransmissionPort -AsBool</code>
+    ///     <remarks>Test port and return a boolean.</remarks>
+    /// </example>
+    /// <para type="link" uri="(https://github.com/trossr32/ps-transmission)">[Github]</para>
+    /// <para type="link" uri="(https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt)">[Transmission RPC API]</para>
+    /// </summary>
+    [Cmdlet(VerbsDiagnostic.Test, "TransmissionPort", HelpUri = "https://github.com/trossr32/ps-transmission")]
     public class TestTransmissionPortCmdlet : BaseTransmissionCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// If supplied the response will be a boolean, otherwise a success message or a terminating error.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter AsBool { get; set; }
 

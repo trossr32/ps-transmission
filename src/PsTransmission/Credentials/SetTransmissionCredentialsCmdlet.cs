@@ -7,21 +7,67 @@ using PsTransmission.Core.Services;
 
 namespace Transmission.Credentials
 {
-    [Cmdlet(VerbsCommon.Set, "TransmissionCredentials", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    /// <summary>
+    /// <para type="synopsis">
+    /// Register Transmission credentials for the session. Required before running any Transmission cmdlets.
+    /// </para>
+    /// <para type="description">
+    /// Register Transmission credentials for the session. Required before running any Transmission cmdlets.
+    /// </para>
+    /// <para type="description">
+    /// Optionally store credentials permanently in an encrypted locally stored file to remove the need for credentials
+    /// to be set in each session by supplying the StorePermanent switch parameter.
+    /// </para>
+    /// <example>
+    ///     <para>Example 1: Register credentials in session</para>
+    ///     <code>PS C:\> Set-TransmissionCredentials -Host "http://192.168.0.1:9091/transmission/rpc" -User "user" -Password "12345"</code>
+    ///     <remarks>Credentials will be registered for the lifetime of the session.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para>Example 2: Register credentials in session and store permanently</para>
+    ///     <code>PS C:\> Set-TransmissionCredentials -Host "http://192.168.0.1:9091/transmission/rpc" -User "user" -Password "12345" -StorePermanent</code>
+    ///     <remarks>Credentials will be registered for the lifetime of the session and stored locally so that this command will not need to be run again.</remarks>
+    /// </example>
+    /// <para type="link" uri="(https://github.com/trossr32/ps-transmission)">[Github]</para>
+    /// </summary>
+    [Cmdlet(VerbsCommon.Set, "TransmissionCredentials", HelpUri = "https://github.com/trossr32/ps-transmission")]
     public class SetTransmissionCredentialsCmdlet : Cmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// The URL of your Transmission API instance, which will look something like: http://192.168.0.1:9091/transmission/rpc
+        /// </para>
+        /// <para type="description">
+        /// The Host is only validated to be a non-empty string, so please ensure you enter the URL correctly.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = true, Position = 0)]
         [Alias("H")]
         public string Host { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// The user name used to login to your Transmission instance, if applicable.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
         [Alias("U")]
         public string User { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// The password used to login to your Transmission instance, if applicable.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
         [Alias("P")]
         public string Password { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied credentials will be stored permanently in an encrypted local file that removes the need for credentials to be set in each session.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         [Alias("S")]
         public SwitchParameter StorePermanent { get; set; }

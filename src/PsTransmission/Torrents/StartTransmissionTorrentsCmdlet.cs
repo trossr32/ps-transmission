@@ -8,18 +8,67 @@ using Transmission.Base;
 
 namespace Transmission.Torrents
 {
-    [Cmdlet(VerbsLifecycle.Start, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission-manager")]
+    /// <summary>
+    /// <para type="synopsis">
+    /// Start torrents.
+    /// </para>
+    /// <para type="description">
+    /// Start torrents. The All, Completed and Incomplete switch parameters will return all torrents, torrents that have
+    /// finished downloading or are still downloading (based on download percent).
+    /// </para>
+    /// <para type="description">
+    /// Calls the 'torrent-start' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+    /// </para>
+    /// <example>
+    ///     <para>Example 1: Start all torrents</para>
+    ///     <code>PS C:\> Start-TransmissionTorrents -All</code>
+    ///     <remarks>Starts all torrents.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para>Example 2: Start all completed torrents</para>
+    ///     <code>PS C:\> Start-TransmissionTorrents -Completed</code>
+    ///     <remarks>Starts all completed torrents.</remarks>
+    /// </example>
+    /// <example>
+    ///     <para>Example 3: Start torrents by id using the pipeline</para>
+    ///     <code>PS C:\> @(1,2) | Start-TransmissionTorrents</code>
+    ///     <remarks>Starts all torrents with ids 1 and 2.</remarks>
+    /// </example>
+    /// <para type="link" uri="(https://github.com/trossr32/ps-transmission)">[Github]</para>
+    /// <para type="link" uri="(https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt)">[Transmission RPC API]</para>
+    /// </summary>
+    [Cmdlet(VerbsLifecycle.Start, "TransmissionTorrents", HelpUri = "https://github.com/trossr32/ps-transmission")]
     public class StartTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
+        /// <summary>
+        /// <para type="description">
+        /// Array of torrent ids.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true, Position = 0)]
         public List<int> TorrentIds { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied all torrents will be started.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter All { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied all completed torrents will be started.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter Completed { get; set; }
 
+        /// <summary>
+        /// <para type="description">
+        /// If supplied all in progress torrents will be started.
+        /// </para>
+        /// </summary>
         [Parameter(Mandatory = false)]
         public SwitchParameter Incomplete { get; set; }
 

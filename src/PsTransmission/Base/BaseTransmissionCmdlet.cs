@@ -10,6 +10,7 @@ namespace Transmission.Base
     {
         /// <summary>
         /// Implements the <see cref="BeginProcessing"/> method for <see cref="BaseTransmissionCmdlet"/>.
+        /// Attempt to validate credentials are available in the session or stored permanently.
         /// </summary>
         protected override void BeginProcessing()
         {
