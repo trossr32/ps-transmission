@@ -12,7 +12,7 @@
     RootModule           = 'Transmission.dll'
 
     # Version number of this module.
-    ModuleVersion        = '1.0.7'
+    ModuleVersion        = '1.0.8'
 
     # Supported PSEditions
     CompatiblePSEditions = 'Core'
@@ -92,7 +92,8 @@
                             'Set-TransmissionTorrentsLocation', 
                             'Start-TransmissionTorrents', 
                             'Start-TransmissionTorrentsNow', 
-                            'Stop-TransmissionTorrents'
+                            'Stop-TransmissionTorrents',
+                            'Set-TransmissionAltSpeedLimits'
                             )
 
     # Variables to export from this module
