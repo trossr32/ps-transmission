@@ -69,7 +69,7 @@ namespace Transmission.Session
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Failed to retrieve session information, see inner exception for details", e), null, ErrorCategory.OperationStopped, null));
+                ThrowTerminatingError(new ErrorRecord(new Exception($"Failed to retrieve session information with error: {e.Message}", e), null, ErrorCategory.OperationStopped, null));
             }
         }
 

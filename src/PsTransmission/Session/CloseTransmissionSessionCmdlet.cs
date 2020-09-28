@@ -56,7 +56,7 @@ namespace Transmission.Session
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Failed to close session, see inner exception for details", e), null, ErrorCategory.OperationStopped, null));
+                ThrowTerminatingError(new ErrorRecord(new Exception($"Failed to close session with error: {e.Message}", e), null, ErrorCategory.OperationStopped, null));
             }
         }
 

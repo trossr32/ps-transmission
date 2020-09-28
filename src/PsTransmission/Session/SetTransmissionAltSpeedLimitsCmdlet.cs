@@ -77,7 +77,7 @@ namespace Transmission.Session
                 bool success = Task.Run(async () => await sessionSvc.Set(request)).Result;
 
                 if (success)
-                    WriteObject($"Alt speed settings {(Enable.IsPresent ? "enabled" : "disabled")} succesfully");
+                    WriteObject($"Alt speed settings {(Enable.IsPresent ? "enabled" : "disabled")} successfully");
             }
             catch (Exception e)
             {

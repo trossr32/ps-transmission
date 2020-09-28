@@ -73,7 +73,7 @@ namespace Transmission.System
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Failed to test port, see inner exception for details", e), null, ErrorCategory.OperationStopped, null));
+                ThrowTerminatingError(new ErrorRecord(new Exception($"Failed to test port with error: {e.Message}", e), null, ErrorCategory.OperationStopped, null));
             }
         }
 
