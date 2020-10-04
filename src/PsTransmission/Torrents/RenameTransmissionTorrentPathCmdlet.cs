@@ -95,7 +95,7 @@ namespace Transmission.Torrents
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Failed to rename torrent path, see inner exception for details", e), null, ErrorCategory.OperationStopped, null));
+                ThrowTerminatingError(new ErrorRecord(new Exception($"Failed to rename torrent path with error: {e.Message}", e), null, ErrorCategory.OperationStopped, null));
             }
         }
 

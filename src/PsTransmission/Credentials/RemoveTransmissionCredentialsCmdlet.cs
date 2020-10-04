@@ -61,7 +61,7 @@ namespace Transmission.Credentials
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Failed to remove credentials, see inner exception for details", e), null, ErrorCategory.OperationStopped, null));
+                ThrowTerminatingError(new ErrorRecord(new Exception($"Failed to remove credentials with error: {e.Message}", e), null, ErrorCategory.OperationStopped, null));
             }
         }
 

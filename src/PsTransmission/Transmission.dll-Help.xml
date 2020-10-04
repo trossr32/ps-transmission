@@ -298,6 +298,610 @@
     xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
     xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Set-TransmissionAltSpeedLimits</command:name>
+      <command:verb>Set</command:verb>
+      <command:noun>TransmissionAltSpeedLimits</command:noun>
+      <maml:description>
+        <maml:para>
+          Set Transmission alt speed state.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Set Transmission alt speed state.
+      </maml:para>
+      <maml:para>
+        Calls the 'session-set' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Enable</maml:name>
+        <maml:description>
+          <maml:para>
+            Enable alt speed limits.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="false">
+        <maml:name>Disable</maml:name>
+        <maml:description>
+          <maml:para>
+            Disable alt speed limits.
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>SwitchParameter</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Enable the alt speed limit</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Set-TransmissionAltSpeedLimits -Enable</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Enable the alt speed limit.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Disable the alt speed limit</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Set-TransmissionAltSpeedLimits -Disable</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Disable the alt speed limit.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Set-TransmissionSession</command:name>
+      <command:verb>Set</command:verb>
+      <command:noun>TransmissionSession</command:noun>
+      <maml:description>
+        <maml:para>
+          Sets Transmission session configuration.
+        </maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>
+        Sets Transmission session configuration.
+      </maml:para>
+      <maml:para>
+        Calls the 'session-set' endpoint: https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt
+      </maml:para>
+    </maml:description>
+    <command:parameters>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>AlternativeSpeedDown</maml:name>
+        <maml:description>
+          <maml:para>
+            Max global download speed (KBps)
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>AlternativeSpeedEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True means use the alt speeds
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>AlternativeSpeedTimeBegin</maml:name>
+        <maml:description>
+          <maml:para>
+            When to turn on alt speeds (units: minutes after midnight)
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>AlternativeSpeedTimeEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True means the scheduled on/off times are used
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>AlternativeSpeedTimeEnd</maml:name>
+        <maml:description>
+          <maml:para>
+            When to turn off alt speeds (units: minutes after midnight)
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>AlternativeSpeedTimeDay</maml:name>
+        <maml:description>
+          <maml:para>
+            What day(s) to turn on alt speeds
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>AlternativeSpeedUp</maml:name>
+        <maml:description>
+          <maml:para>
+            Max global upload speed (KBps)
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>BlockListUrl</maml:name>
+        <maml:description>
+          <maml:para>
+            Location of the blocklist to use for "blocklist-update"
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">string</command:parameterValue>
+        <dev:type>string</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>BlockListEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True means enabled
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>CacheSizeMb</maml:name>
+        <maml:description>
+          <maml:para>
+            Maximum size of the disk cache (MB)
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>DownloadDirectory</maml:name>
+        <maml:description>
+          <maml:para>
+            Default path to download torrents
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">string</command:parameterValue>
+        <dev:type>string</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>DownloadQueueSize</maml:name>
+        <maml:description>
+          <maml:para>
+            Max number of torrents to download at once (see download-queue-enabled)
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>DownloadQueueEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            If true, limit how many torrents can be downloaded at once
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>DhtEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True means allow dht in public torrents
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>Encryption</maml:name>
+        <maml:description>
+          <maml:para>
+            "required", "preferred", "tolerated"
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">string</command:parameterValue>
+        <dev:type>string</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>IdleSeedingLimit</maml:name>
+        <maml:description>
+          <maml:para>
+            Torrents we're seeding will be stopped if they're idle for this long
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>IdleSeedingLimitEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True if the seeding inactivity limit is honored by default
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>IncompleteDirectory</maml:name>
+        <maml:description>
+          <maml:para>
+            Path for incomplete torrents, when enabled
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">string</command:parameterValue>
+        <dev:type>string</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>IncompleteDirectoryEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True means keep torrents in incomplete-dir until done
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>LpdEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True means allow Local Peer Discovery in public torrents
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PeerLimitGlobal</maml:name>
+        <maml:description>
+          <maml:para>
+            Maximum global number of peers
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PeerLimitPerTorrent</maml:name>
+        <maml:description>
+          <maml:para>
+            Maximum global number of peers
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PexEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True means allow pex in public torrents
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PeerPort</maml:name>
+        <maml:description>
+          <maml:para>
+            Port number
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PeerPortRandomOnStart</maml:name>
+        <maml:description>
+          <maml:para>
+            True means pick a random peer port on launch
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>PortForwardingEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            true means enabled
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>QueueStalledEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            Whether or not to consider idle torrents as stalled
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>QueueStalledMinutes</maml:name>
+        <maml:description>
+          <maml:para>
+            Torrents that are idle for N minuets aren't counted toward seed-queue-size or download-queue-size
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>RenamePartialFiles</maml:name>
+        <maml:description>
+          <maml:para>
+            True means append ".part" to incomplete files
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>ScriptTorrentDoneFilename</maml:name>
+        <maml:description>
+          <maml:para>
+            Filename of the script to run
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">string</command:parameterValue>
+        <dev:type>string</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>ScriptTorrentDoneEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            Whether or not to call the "done" script
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SeedRatioLimit</maml:name>
+        <maml:description>
+          <maml:para>
+            The default seed ratio for torrents to use
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">double</command:parameterValue>
+        <dev:type>double</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SeedRatioLimited</maml:name>
+        <maml:description>
+          <maml:para>
+            True if seedRatioLimit is honored by default
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SeedQueueSize</maml:name>
+        <maml:description>
+          <maml:para>
+            Max number of torrents to uploaded at once (see seed-queue-enabled)
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SeedQueueEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            If true, limit how many torrents can be uploaded at once
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SpeedLimitDown</maml:name>
+        <maml:description>
+          <maml:para>
+            Max global download speed (KBps)
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SpeedLimitDownEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True means enabled
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SpeedLimitUp</maml:name>
+        <maml:description>
+          <maml:para>
+            max global upload speed (KBps)
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">int</command:parameterValue>
+        <dev:type>int</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>SpeedLimitUpEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True means enabled
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>StartAddedTorrents</maml:name>
+        <maml:description>
+          <maml:para>
+            True means added torrents will be started right away
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>TrashOriginalTorrentFiles</maml:name>
+        <maml:description>
+          <maml:para>
+            True means the .torrent file of added torrents will be deleted
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" pipelineInput="false" variableLength="true">
+        <maml:name>UtpEnabled</maml:name>
+        <maml:description>
+          <maml:para>
+            True means allow utp
+          </maml:para>
+        </maml:description>
+        <command:parameterValue required="false" variableLength="true">bool</command:parameterValue>
+        <dev:type>bool</dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:examples>
+      <command:example>
+        <maml:title>Example 1: Enable the alt speed limit</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Set-TransmissionSession -AlternativeSpeedEnabled $true</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Enable the alt speed limit.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>Example 2: Enable the alt speed scheduler, set scheduled time as 22:00 to 07:00 and download speed as 3Mb</maml:title>
+        <maml:Introduction>
+          <maml:paragraph>C:\PS></maml:paragraph>
+        </maml:Introduction>
+        <dev:code>Set-TransmissionSession -AlternativeSpeedTimeEnabled $true -AlternativeSpeedTimeBegin 1320 -AlternativeSpeedTimeEnd 420 -AlternativeSpeedDown 3000</dev:code>
+        <dev:remarks>
+          <maml:para>
+            Enable the alt speed scheduler, set scheduled time as 22:00 to 07:00 and download speed as 3Mb.
+          </maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <maml:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/trossr32/ps-transmission</maml:linkText>
+      </maml:navigationLink>
+      <maml:navigationLink>
+        <maml:linkText>https://github.com/transmission/transmission/blob/master/extras/rpc-spec.txt</maml:linkText>
+      </maml:navigationLink>
+    </maml:relatedLinks>
+  </command:command>
+  <command:command
+    xmlns:maml="http://schemas.microsoft.com/maml/2004/10"
+    xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10"
+    xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10"
+    xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-TransmissionSessionStatistics</command:name>
       <command:verb>Get</command:verb>
       <command:noun>TransmissionSessionStatistics</command:noun>

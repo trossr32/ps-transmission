@@ -130,7 +130,7 @@ namespace Transmission.Torrents
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Failed to move torrent(s), see inner exception for details", e), null, ErrorCategory.OperationStopped, null));
+                ThrowTerminatingError(new ErrorRecord(new Exception($"Failed to move torrent(s) with error: {e.Message}", e), null, ErrorCategory.OperationStopped, null));
             }
         }
     }

@@ -54,6 +54,8 @@ Remove-TransmissionCredentials
 Close-TransmissionSession
 Get-TransmissionSession
 Get-TransmissionSessionStatistics
+Set-TransmissionAltSpeedLimits
+Set-TransmissionSession
 ```
 
 ### System
@@ -101,4 +103,4 @@ Get-ChildItem -Path "[Github clone/download directory]\ps-transmission\src\PsTra
 
 ## Contribute
 
-Please raise an issue if you find a bug, or create a pull request to contribute.
+Please raise an issue if you find a bug or want to request a new feature, or create a pull request to contribute.

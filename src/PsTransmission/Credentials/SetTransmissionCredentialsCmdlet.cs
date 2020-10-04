@@ -101,7 +101,7 @@ namespace Transmission.Credentials
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Failed to set credentials, see inner exception for details", e), null, ErrorCategory.OperationStopped, null));
+                ThrowTerminatingError(new ErrorRecord(new Exception($"Failed to set credentials with error: {e.Message}", e), null, ErrorCategory.OperationStopped, null));
             }
         }
 

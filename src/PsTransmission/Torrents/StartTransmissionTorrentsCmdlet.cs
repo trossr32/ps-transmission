@@ -132,11 +132,11 @@ namespace Transmission.Torrents
                 if (response.torrentCount == 0)
                     WriteWarning("No torrents found.");
                 else
-                    WriteObject($"{response.torrentCount} {info}torrent{(response.torrentCount > 1 ? "s" : "")} started.");
+                    WriteObject($"{response.torrentCount} {info} torrent{(response.torrentCount > 1 ? "s" : "")} started.");
             }
             catch (Exception e)
             {
-                ThrowTerminatingError(new ErrorRecord(new Exception("Failed to start torrents, see inner exception for details", e), null, ErrorCategory.OperationStopped, null));
+                ThrowTerminatingError(new ErrorRecord(new Exception($"Failed to start torrents with error: {e.Message}", e), null, ErrorCategory.OperationStopped, null));
             }
         }
     }

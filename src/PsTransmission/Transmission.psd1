@@ -77,7 +77,9 @@
                             'Remove-TransmissionCredentials',  
                             'Close-TransmissionSession', 
                             'Get-TransmissionSession', 
-                            'Get-TransmissionSessionStatistics', 
+                            'Get-TransmissionSessionStatistics',
+                            'Set-TransmissionAltSpeedLimits',
+                            'Set-TransmissionSession', 
                             'Test-TransmissionPort', 
                             'Update-TransmissionBlockLists', 
                             'Invoke-TransmissionWeb', 
@@ -92,8 +94,7 @@
                             'Set-TransmissionTorrentsLocation', 
                             'Start-TransmissionTorrents', 
                             'Start-TransmissionTorrentsNow', 
-                            'Stop-TransmissionTorrents',
-                            'Set-TransmissionAltSpeedLimits'
+                            'Stop-TransmissionTorrents'
                             )
 
     # Variables to export from this module
