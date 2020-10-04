@@ -398,7 +398,7 @@ namespace Transmission.Session
                 var request = new SessionSettings
                 {
                     AlternativeSpeedDown = AlternativeSpeedDown,
-                    AlternativeSpeedEnabled = AlternativeSpeedTimeEnabled,
+                    AlternativeSpeedEnabled = AlternativeSpeedEnabled,
                     AlternativeSpeedTimeBegin = AlternativeSpeedTimeBegin,
                     AlternativeSpeedTimeEnabled = AlternativeSpeedTimeEnabled,
                     AlternativeSpeedTimeEnd = AlternativeSpeedTimeEnd,
