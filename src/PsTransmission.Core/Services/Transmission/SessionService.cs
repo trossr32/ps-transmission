@@ -18,37 +18,25 @@ namespace PsTransmission.Core.Services.Transmission
         /// Get session information
         /// </summary>
         /// <returns></returns>
-        public async Task<SessionInformation> Get()
-        {
-            return await _client.SessionGetAsync();
-        }
+        public async Task<SessionInformation> Get() => await _client.SessionGetAsync();
 
         /// <summary>
         /// Get session statistics
         /// </summary>
         /// <returns></returns>
-        public async Task<Statistic> GetStats()
-        {
-            return await _client.SessionGetStatisticAsync();
-        }
+        public async Task<Statistic> GetStats() => await _client.SessionGetStatisticAsync();
 
         /// <summary>
         /// Set session settings
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> Set(SessionSettings request)
-        {
-            return await _client.SessionSetAsync(request);
-        }
+        public async Task<bool> Set(SessionSettings request) => await _client.SessionSetAsync(request);
 
         /// <summary>
         /// Close session <br />
         /// Careful with this one; it essentially shuts transmission down and will need to be restarted to bring it back.
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> Close()
-        {
-            return await _client.SessionCloseAsync();
-        }
+        public async Task<bool> Close() => await _client.SessionCloseAsync();
     }
 }

@@ -65,12 +65,10 @@ namespace PsTransmission.Core.Services
         /// Build an encryption key unique to the host machine
         /// </summary>
         /// <returns></returns>
-        private static string EncryptionKey()
-        {
-            return new DeviceIdBuilder()
-                .AddProcessorId()
+        private static string EncryptionKey() =>
+            new DeviceIdBuilder()
+                .OnWindows(windows => windows.AddProcessorId())
                 .AddMachineName()
                 .ToString();
-        }
     }
 }

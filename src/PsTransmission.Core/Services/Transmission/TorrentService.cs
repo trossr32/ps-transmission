@@ -22,36 +22,28 @@ namespace PsTransmission.Core.Services.Transmission
         /// Retrieve all torrents.
         /// </summary>
         /// <returns></returns>
-        public async Task<Torrent[]> GetTorrents(List<int> torrentIds = null)
-        {
-            string[] includeFields;
-
-            return torrentIds != null
+        public async Task<Torrent[]> GetTorrents(List<int> torrentIds = null) => 
+            torrentIds != null
                 ? (await _client.TorrentGetAsync(TorrentFields.AllFields, torrentIds.ToArray()))?.TorrentList
                 : (await _client.TorrentGetAsync(TorrentFields.AllFields))?.TorrentList;
-        }
 
         /// <summary>
         /// Get completed torrents.
         /// </summary>
         /// <returns></returns>
-        public async Task<Torrent[]> GetCompletedTorrents()
-        {
-            return (await GetTorrents())
+        public async Task<Torrent[]> GetCompletedTorrents() => 
+            (await GetTorrents())
                 .Where(t => t.PercentDone == 1.0)
                 .ToArray();
-        }
 
         /// <summary>
         /// Get incomplete torrents.
         /// </summary>
         /// <returns></returns>
-        public async Task<Torrent[]> GetIncompleteTorrents()
-        {
-            return (await GetTorrents())
+        public async Task<Torrent[]> GetIncompleteTorrents() => 
+            (await GetTorrents())
                 .Where(t => t.PercentDone < 1.0)
                 .ToArray();
-        }
 
         /// <summary>
         /// Stop torrents. If the supplied list of ids is null, all torrents will be stopped.
@@ -244,9 +236,8 @@ namespace PsTransmission.Core.Services.Transmission
         /// Move torrents in queue.
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> MoveTorrents(MoveInQueue moveInQueue, List<int> torrentIds)
-        {
-            return moveInQueue switch
+        public async Task<bool> MoveTorrents(MoveInQueue moveInQueue, List<int> torrentIds) =>
+            moveInQueue switch
             {
                 MoveInQueue.Up => await _client.TorrentQueueMoveUpAsync(torrentIds.ToArray()),
                 MoveInQueue.Down => await _client.TorrentQueueMoveDownAsync(torrentIds.ToArray()),
@@ -254,16 +245,13 @@ namespace PsTransmission.Core.Services.Transmission
                 MoveInQueue.Bottom => await _client.TorrentQueueMoveBottomAsync(torrentIds.ToArray()),
                 _ => throw new ArgumentOutOfRangeException(nameof(moveInQueue), moveInQueue, null)
             };
-        }
 
         /// <summary>
         /// Verify torrents.
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> VerifyTorrents(List<int> torrentIds)
-        {
-            return await _client.TorrentVerifyAsync(torrentIds.ToArray());
-        }
+        public async Task<bool> VerifyTorrents(List<int> torrentIds) => 
+            await _client.TorrentVerifyAsync(torrentIds.ToArray());
 
         /// <summary>
         /// Re-announce torrents <br />
@@ -271,10 +259,8 @@ namespace PsTransmission.Core.Services.Transmission
         /// </summary>
         /// <param name="torrentIds"></param>
         /// <returns></returns>
-        public async Task<bool> ReannounceTorrents(List<int> torrentIds)
-        {
-            return await _client.TorrentReannounceAsync(torrentIds.ToArray());
-        }
+        public async Task<bool> ReannounceTorrents(List<int> torrentIds) => 
+            await _client.TorrentReannounceAsync(torrentIds.ToArray());
 
         /// <summary>
         /// Rename a file or directory in a torrent
@@ -282,10 +268,8 @@ namespace PsTransmission.Core.Services.Transmission
         /// <param name="torrentId">The torrent whose path will be renamed</param>
         /// <param name="path">The path to the file or folder that will be renamed</param>
         /// <param name="name">The file or folder's new name</param>
-        public async Task<RenamedTorrent> RenameTorrentPath(int torrentId, string path, string name)
-        {
-            return await _client.TorrentRenamePathAsync(torrentId, path, name);
-        }
+        public async Task<RenamedTorrent> RenameTorrentPath(int torrentId, string path, string name) => 
+            await _client.TorrentRenamePathAsync(torrentId, path, name);
 
         /// <summary>
         /// Set new location for torrents files (API: torrent-set-location)
@@ -293,29 +277,23 @@ namespace PsTransmission.Core.Services.Transmission
         /// <param name="torrentIds">Torrent ids</param>
         /// <param name="location">The new torrent location</param>
         /// <param name="move">Move from previous location</param>
-        public async Task<bool> SetTorrentsLocation(List<int> torrentIds, string location, bool move)
-        {
-            return await _client.TorrentSetLocationAsync(torrentIds.ToArray(), location, move);
-        }
+        public async Task<bool> SetTorrentsLocation(List<int> torrentIds, string location, bool move) => 
+            await _client.TorrentSetLocationAsync(torrentIds.ToArray(), location, move);
 
         /// <summary>
         /// Set torrent params
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<bool> SetTorrents(TorrentSettings request)
-        {
-            return await _client.TorrentSetAsync(request);
-        }
+        public async Task<bool> SetTorrents(TorrentSettings request) => 
+            await _client.TorrentSetAsync(request);
 
         /// <summary>
         /// Add multiple torrents
         /// </summary>
         /// <param name="requests"></param>
         /// <returns>A list of successful and failed results</returns>
-        public async Task<AddTorrentsResponse> AddTorrents(List<NewTorrent> requests)
-        {
-            return await _client.TorrentsAddAsync(requests);
-        }
+        public async Task<AddTorrentsResponse> AddTorrents(List<NewTorrent> requests) => 
+            await _client.TorrentsAddAsync(requests);
     }
 }
