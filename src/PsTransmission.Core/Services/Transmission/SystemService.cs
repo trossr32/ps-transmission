@@ -17,18 +17,12 @@ namespace PsTransmission.Core.Services.Transmission
         /// Port test
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> TestPort()
-        {
-            return await _client.PortTestAsync();
-        }
+        public async Task<bool> TestPort() => await _client.PortTestAsync();
 
         /// <summary>
         /// Update blocklists
         /// </summary>
         /// <returns>success flag and error message, if applicable</returns>
-        public async Task<(bool success, string error)> UpdateBlockList()
-        {
-            return await _client.UpdateBlockListAsync();
-        }
+        public async Task<(bool success, string error)> UpdateBlockList() => await _client.UpdateBlockListAsync();
     }
 }

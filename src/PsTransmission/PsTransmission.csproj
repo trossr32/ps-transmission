@@ -5,8 +5,8 @@
     <AssemblyName>Transmission</AssemblyName>
     <RootNamespace>Transmission</RootNamespace>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <AssemblyVersion>1.0.8.0</AssemblyVersion>
-    <Version>1.0.8</Version>
+    <AssemblyVersion>1.0.9.0</AssemblyVersion>
+    <Version>1.0.9</Version>
   </PropertyGroup>
 
   <ItemGroup>

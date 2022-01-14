@@ -17,7 +17,20 @@ namespace Transmission.Base
             if (TransmissionContext.HasCredentials)
                 return;
 
-            TransmissionContext.Credentials = Task.Run(async () => await AuthService.GetConfig()).Result;
+            try
+            {
+                TransmissionContext.Credentials = Task.Run(async () => await AuthService.GetConfig()).Result;
+            }
+            catch (Exception e)
+            {
+                var credsGetError = "Failed to retrieve credentials. If you have upgraded from v1.0.8 or lower then this is likely caused by the device id package dependency that is used to encrypt your credentials being upgraded. Please remove your existing credentials with Remove-TransmissionCredentials and then set them again with Set-TransmissionCredentials.";
+
+                ThrowTerminatingError(new ErrorRecord(new Exception(credsGetError, e), null, ErrorCategory.AuthenticationError, null)
+                {
+                    CategoryInfo = { Reason = credsGetError },
+                    ErrorDetails = new ErrorDetails(credsGetError)
+                });
+            }
 
             if (TransmissionContext.HasCredentials)
                 return;

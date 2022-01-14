@@ -63,11 +63,7 @@ namespace Transmission.NetCore.Client.Models
 
         [JsonProperty("uploadedEver")]
         public long UploadedEver { get; set; }
-
-
-
-
-
+        
         [JsonProperty("activityDate")]
         public int ActivityDate { get; set; }
 
@@ -78,7 +74,7 @@ namespace Transmission.NetCore.Client.Models
         public string Comment { get; set; }
 
         [JsonProperty("corruptEver")]
-        public int CorruptEver { get; set; }
+        public long CorruptEver { get; set; }
 
         [JsonProperty("creator")]
         public string Creator { get; set; }
