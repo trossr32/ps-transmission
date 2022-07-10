@@ -1,10 +1,9 @@
-﻿namespace PsTransmission.Core.Enums
+﻿namespace PsTransmission.Core.Enums;
+
+public enum MoveInQueue
 {
-    public enum MoveInQueue
-    {
-        Up,
-        Down,
-        Top,
-        Bottom
-    }
+    Up,
+    Down,
+    Top,
+    Bottom
 }

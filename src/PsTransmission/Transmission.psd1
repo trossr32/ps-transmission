@@ -7,12 +7,11 @@
 #
 
 @{
-
     # Script module or binary module file associated with this manifest.
     RootModule           = 'Transmission.dll'
 
     # Version number of this module.
-    ModuleVersion        = '1.0.9'
+    ModuleVersion        = '1.1.0'
 
     # Supported PSEditions
     CompatiblePSEditions = 'Core'
@@ -27,7 +26,7 @@
     CompanyName          = 'Unknown'
 
     # Copyright statement for this module
-    Copyright            = '(c) 2020 Rob Green. All rights reserved.'
+    Copyright            = '(c) 2022 Rob Green. All rights reserved.'
 
     # Description of the functionality provided by this module
     Description          = 'A Powershell module that integrates with the Transmission RPC API.'
