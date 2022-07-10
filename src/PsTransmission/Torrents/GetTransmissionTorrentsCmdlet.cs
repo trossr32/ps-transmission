@@ -116,7 +116,7 @@ public class GetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
             if (Json)
                 WriteObject(JsonConvert.SerializeObject(torrents));
             else
-                WriteObject(torrents);
+                WriteObject(torrents, true);
         }
         catch (Exception e)
         {
