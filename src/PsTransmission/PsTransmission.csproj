@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<nullable>disable</nullable>
 		<AssemblyName>Transmission</AssemblyName>
 		<RootNamespace>Transmission</RootNamespace>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-		<AssemblyVersion>1.1.0.0</AssemblyVersion>
-		<Version>1.1.0</Version>
+		<AssemblyVersion>1.2.0.0</AssemblyVersion>
+		<Version>1.2.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
