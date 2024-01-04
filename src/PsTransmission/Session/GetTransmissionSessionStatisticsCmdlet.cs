@@ -44,10 +44,7 @@ public class GetTransmissionSessionStatisticsCmdlet : BaseTransmissionCmdlet
     /// <summary>
     /// Implements the <see cref="BeginProcessing"/> method for <see cref="GetTransmissionSessionStatisticsCmdlet"/>.
     /// </summary>
-    protected override void BeginProcessing()
-    {
-        base.BeginProcessing();
-    }
+    protected override void BeginProcessing() => base.BeginProcessing();
 
     /// <summary>
     /// Implements the <see cref="ProcessRecord"/> method for <see cref="GetTransmissionSessionStatisticsCmdlet"/>.
@@ -58,7 +55,7 @@ public class GetTransmissionSessionStatisticsCmdlet : BaseTransmissionCmdlet
         {
             var sessionSvc = new SessionService();
 
-            Statistic sessionStats = Task.Run(async () => await sessionSvc.GetStats()).Result;
+            var sessionStats = Task.Run(sessionSvc.GetStats).Result;
 
             if (Json)
                 WriteObject(JsonConvert.SerializeObject(sessionStats));

@@ -17,23 +17,23 @@ public abstract class BaseTransmissionCmdlet : Cmdlet
 
         try
         {
-            TransmissionContext.Credentials = Task.Run(async () => await AuthService.GetConfig()).Result;
+            TransmissionContext.Credentials = Task.Run(AuthService.GetConfig).Result;
         }
         catch (Exception e)
         {
-            var credsGetError = "Failed to retrieve credentials. If you have upgraded from v1.0.8 or lower then this is likely caused by the device id package dependency that is used to encrypt your credentials being upgraded. Please remove your existing credentials with Remove-TransmissionCredentials and then set them again with Set-TransmissionCredentials.";
+            const string credentialsGetError = "Failed to retrieve credentials. If you have upgraded from v1.0.8 or lower then this is likely caused by the device id package dependency that is used to encrypt your credentials being upgraded. Please remove your existing credentials with Remove-TransmissionCredentials and then set them again with Set-TransmissionCredentials.";
 
-            ThrowTerminatingError(new ErrorRecord(new Exception(credsGetError, e), null, ErrorCategory.AuthenticationError, null)
+            ThrowTerminatingError(new ErrorRecord(new Exception(credentialsGetError, e), null, ErrorCategory.AuthenticationError, null)
             {
-                CategoryInfo = { Reason = credsGetError },
-                ErrorDetails = new ErrorDetails(credsGetError)
+                CategoryInfo = { Reason = credentialsGetError },
+                ErrorDetails = new ErrorDetails(credentialsGetError)
             });
         }
 
         if (TransmissionContext.HasCredentials)
             return;
 
-        var error = "No credentials set, Set-TransmissionCredentials must be run to save credentials before running any cmdlets.";
+        const string error = "No credentials set, Set-TransmissionCredentials must be run to save credentials before running any cmdlets.";
 
         ThrowTerminatingError(new ErrorRecord(new Exception(error), null, ErrorCategory.AuthenticationError, null)
         {

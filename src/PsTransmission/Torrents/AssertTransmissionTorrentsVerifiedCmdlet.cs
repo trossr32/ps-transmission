@@ -55,7 +55,7 @@ public class AssertTransmissionTorrentsVerifiedCmdlet : BaseTransmissionCmdlet
     {
         base.BeginProcessing();
 
-        _torrentIds = new List<int>();
+        _torrentIds = [];
     }
 
     /// <summary>
@@ -76,12 +76,12 @@ public class AssertTransmissionTorrentsVerifiedCmdlet : BaseTransmissionCmdlet
         try
         {
             // validate a torrent id has been supplied
-            if (!_torrentIds.Any())
+            if (_torrentIds.Count == 0)
                 ThrowTerminatingError(new ErrorRecord(new Exception("The TorrentIds parameter must be supplied."), null, ErrorCategory.InvalidArgument, null));
 
             var torrentSvc = new TorrentService();
                 
-            bool success = Task.Run(async () => await torrentSvc.VerifyTorrents(_torrentIds)).Result;
+            var success = Task.Run(async () => await torrentSvc.VerifyTorrents(_torrentIds)).Result;
 
             if (AsBool.IsPresent)
             {

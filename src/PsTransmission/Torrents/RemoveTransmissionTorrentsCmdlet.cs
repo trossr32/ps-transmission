@@ -88,7 +88,7 @@ public class RemoveTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
         base.BeginProcessing();
 
-        _torrentIds = new List<int>();
+        _torrentIds = [];
     }
 
     /// <summary>
@@ -108,13 +108,13 @@ public class RemoveTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
         try
         {
-            if (!All.IsPresent && !Completed.IsPresent && !Incomplete.IsPresent && !(TorrentIds ?? new List<int>()).Any())
+            if (!All.IsPresent && !Completed.IsPresent && !Incomplete.IsPresent && (TorrentIds ?? []).Count == 0)
                 ThrowTerminatingError(new ErrorRecord(new Exception("One of the following parameters must be supplied: All, Completed, Incomplete, TorrentIds"), null, ErrorCategory.InvalidArgument, null));
 
             var torrentSvc = new TorrentService();
 
             (bool success, int torrentCount) response;
-            string info = "";
+            var info = "";
 
             if (All.IsPresent)
                 response = Task.Run(async () => await torrentSvc.RemoveTorrents(null, DeleteData.IsPresent)).Result;

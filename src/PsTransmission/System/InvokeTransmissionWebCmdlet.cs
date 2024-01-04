@@ -27,17 +27,14 @@ public class InvokeTransmissionWebCmdlet : BaseTransmissionCmdlet
     /// <summary>
     /// Implements the <see cref="BeginProcessing"/> method for <see cref="InvokeTransmissionWebCmdlet"/>.
     /// </summary>
-    protected override void BeginProcessing()
-    {
-        base.BeginProcessing();
-    }
+    protected override void BeginProcessing() => base.BeginProcessing();
 
     /// <summary>
     /// Implements the <see cref="ProcessRecord"/> method for <see cref="InvokeTransmissionWebCmdlet"/>.
     /// </summary>
     protected override void ProcessRecord()
     {
-        string url = new Url(TransmissionContext.Credentials.Host).Root;
+        var url = new Url(TransmissionContext.Credentials.Host).Root;
 
         try
         {
@@ -53,19 +50,25 @@ public class InvokeTransmissionWebCmdlet : BaseTransmissionCmdlet
                 url = url.Replace("&", "^&");
 
                 Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+
+                return;
             }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 Process.Start("xdg-open", url);
+
+                return;
             }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
                 Process.Start("open", url);
+
+                return;
             }
-            else
-            {
-                ThrowTerminatingError(new ErrorRecord(new Exception($"Failed to launch web UI. {e.Message}", e), null, ErrorCategory.OperationStopped, null));
-            }
+
+            ThrowTerminatingError(new ErrorRecord(new Exception($"Failed to launch web UI. {e.Message}", e), null, ErrorCategory.OperationStopped, null));
         }
     }
 

@@ -367,14 +367,13 @@ public class SetTransmissionSessionCmdlet : BaseTransmissionCmdlet
     /// </summary>
     [Parameter(Mandatory = false)]
     public bool? UtpEnabled { get; set; }
-        
+
+    private static readonly string[] SourceArray = ["required", "preferred", "tolerated"];
+
     /// <summary>
     /// Implements the <see cref="BeginProcessing"/> method for <see cref="SetTransmissionSessionCmdlet"/>.
     /// </summary>
-    protected override void BeginProcessing()
-    {
-        base.BeginProcessing();
-    }
+    protected override void BeginProcessing() => base.BeginProcessing();
 
     /// <summary>
     /// Implements the <see cref="ProcessRecord"/> method for <see cref="SetTransmissionSessionCmdlet"/>.
@@ -388,7 +387,7 @@ public class SetTransmissionSessionCmdlet : BaseTransmissionCmdlet
                 throw new Exception("At least one parameter with a valid value must be supplied");
 
             // if the encryption parameter has been supplied validate the value
-            if (!string.IsNullOrWhiteSpace(Encryption) && !(new[]{ "required", "preferred", "tolerated" }.Any(e => e == Encryption.ToLower())))
+            if (!string.IsNullOrWhiteSpace(Encryption) && !SourceArray.Any(e => e.Equals(Encryption, StringComparison.OrdinalIgnoreCase)))
                 throw new Exception("The encryption parameter has an invalid value. Allowed values are 'required', 'preferred', 'tolerated'.");
 
             var request = new SessionSettings
@@ -439,7 +438,7 @@ public class SetTransmissionSessionCmdlet : BaseTransmissionCmdlet
 
             var sessionSvc = new SessionService();
 
-            bool success = Task.Run(async () => await sessionSvc.Set(request)).Result;
+            var success = Task.Run(async () => await sessionSvc.Set(request)).Result;
 
             if (!success)
                 throw new Exception("Failed to update session");

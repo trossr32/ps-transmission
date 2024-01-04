@@ -43,7 +43,7 @@ public class TransmissionClient
     {
         var request = new TransmissionRequest("session-close", null);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -56,7 +56,7 @@ public class TransmissionClient
     {
         var request = new TransmissionRequest("session-set", settings.ToDictionary());
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -69,7 +69,7 @@ public class TransmissionClient
     {
         var request = new TransmissionRequest("session-stats", null);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
             
         return response.Deserialize<Statistic>();
     }
@@ -82,7 +82,7 @@ public class TransmissionClient
     {
         var request = new TransmissionRequest("session-get", null);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
             
         return response.Deserialize<SessionInformation>();
     }
@@ -103,14 +103,14 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("torrent-add", torrent.ToDictionary());
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
-        JObject jObject = response.Deserialize<JObject>();
+        var jObject = response.Deserialize<JObject>();
 
         if (jObject?.First == null)
             return null;
 
-        if (jObject.TryGetValue("torrent-duplicate", out JToken value))
+        if (jObject.TryGetValue("torrent-duplicate", out var value))
             return JsonConvert.DeserializeObject<CreatedTorrent>(value.ToString());
 
         if (jObject.TryGetValue("torrent-added", out value))
@@ -135,7 +135,7 @@ public class TransmissionClient
             {
                 var request = new TransmissionRequest("torrent-add", torrent.ToDictionary());
 
-                TransmissionResponse response = await SendRequestAsync(request);
+                var response = await SendRequestAsync(request);
 
                 if (!response.Result.Equals("success", StringComparison.OrdinalIgnoreCase))
                 {
@@ -149,7 +149,7 @@ public class TransmissionClient
                     continue;
                 }
 
-                JObject jObject = response.Deserialize<JObject>();
+                var jObject = response.Deserialize<JObject>();
 
                 if (jObject?.First == null)
                 {
@@ -163,7 +163,7 @@ public class TransmissionClient
                     continue;
                 }
 
-                if (jObject.TryGetValue("torrent-duplicate", out JToken value))
+                if (jObject.TryGetValue("torrent-duplicate", out var value))
                 {
                     successes.Add(new AddTorrentSuccess
                     {
@@ -209,7 +209,7 @@ public class TransmissionClient
     {
         var request = new TransmissionRequest("torrent-set", settings.ToDictionary());
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -252,7 +252,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("torrent-remove", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -270,7 +270,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("torrent-start", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -288,7 +288,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("torrent-start-now", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -306,7 +306,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("torrent-stop", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -324,7 +324,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("torrent-verify", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -343,7 +343,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("torrent-reannounce", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -361,7 +361,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("queue-move-top", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -379,7 +379,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("queue-move-up", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -397,7 +397,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("queue-move-down", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -415,7 +415,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("queue-move-bottom", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -437,7 +437,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("torrent-set-location", arguments);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase);
     }
@@ -459,7 +459,7 @@ public class TransmissionClient
 
         var request = new TransmissionRequest("torrent-rename-path", arguments);
             
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Deserialize<RenamedTorrent>();
     }
@@ -476,9 +476,9 @@ public class TransmissionClient
     {
         var request = new TransmissionRequest("port-test", null);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
-        JObject data = response.Deserialize<JObject>();
+        var data = response.Deserialize<JObject>();
             
         return (bool)data.GetValue("port-is-open");
     }
@@ -491,7 +491,7 @@ public class TransmissionClient
     {
         var request = new TransmissionRequest("blocklist-update", null);
 
-        TransmissionResponse response = await SendRequestAsync(request);
+        var response = await SendRequestAsync(request);
 
         return response.Result.Equals("success", StringComparison.OrdinalIgnoreCase) 
             ? (success: true, null) 

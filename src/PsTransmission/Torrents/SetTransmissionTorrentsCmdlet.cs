@@ -176,7 +176,7 @@ public class SetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
         base.BeginProcessing();
 
-        _torrentIds = new List<int>();
+        _torrentIds = [];
     }
 
     /// <summary>
@@ -197,7 +197,7 @@ public class SetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
         try
         {
             // validate a torrent id has been supplied
-            if (!(TorrentIds ?? new List<int>()).Any())
+            if ((TorrentIds ?? []).Count == 0)
                 ThrowTerminatingError(new ErrorRecord(new Exception("The TorrentIds parameter must be supplied."), null, ErrorCategory.InvalidArgument, null));
 
             var torrentSvc = new TorrentService();
@@ -208,7 +208,7 @@ public class SetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
                 DownloadLimit = DownloadLimit,
                 DownloadLimited = DownloadLimited,
                 HonorsSessionLimits = HonoursSessionLimits,
-                Ids = _torrentIds.ToArray(),
+                Ids = [.. _torrentIds],
                 Location = Location,
                 PeerLimit = PeerLimit,
                 QueuePosition = QueuePosition,
@@ -218,15 +218,15 @@ public class SetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
                 SeedRatioMode = SeedRatioMode,
                 UploadLimit = UploadLimit,
                 UploadLimited = UploadLimited,
-                TrackerAdd = (TrackerAdd ?? new List<string>()).Any()
-                    ? TrackerAdd.ToArray()
+                TrackerAdd = (TrackerAdd ?? []).Count != 0
+                    ? [.. TrackerAdd]
                     : null,
-                TrackerRemove = (TrackerRemove ?? new List<int>()).Any()
-                    ? TrackerRemove.ToArray()
+                TrackerRemove = (TrackerRemove ?? []).Count != 0
+                    ? [.. TrackerRemove]
                     : null
             };
 
-            bool success = Task.Run(async () => await torrentSvc.SetTorrents(request)).Result;
+            var success = Task.Run(async () => await torrentSvc.SetTorrents(request)).Result;
 
             if (AsBool.IsPresent)
             {

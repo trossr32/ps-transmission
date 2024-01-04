@@ -31,10 +31,7 @@ public class CloseTransmissionSessionCmdlet : BaseTransmissionCmdlet
     /// <summary>
     /// Implements the <see cref="BeginProcessing"/> method for <see cref="CloseTransmissionSessionCmdlet"/>.
     /// </summary>
-    protected override void BeginProcessing()
-    {
-        base.BeginProcessing();
-    }
+    protected override void BeginProcessing() => base.BeginProcessing();
 
     /// <summary>
     /// Implements the <see cref="ProcessRecord"/> method for <see cref="CloseTransmissionSessionCmdlet"/>.
@@ -45,7 +42,7 @@ public class CloseTransmissionSessionCmdlet : BaseTransmissionCmdlet
         {
             var sessionSvc = new SessionService();
             
-            bool success = Task.Run(async () => await sessionSvc.Close()).Result;
+            var success = Task.Run(sessionSvc.Close).Result;
 
             if (success)
                 WriteObject("Session closed");

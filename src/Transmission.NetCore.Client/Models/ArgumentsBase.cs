@@ -17,12 +17,12 @@ public abstract class ArgumentsBase
 
         foreach (var prop in properties)
         {
-            CustomAttributeData propJsonAttr = prop.CustomAttributes.FirstOrDefault(attr => attr.AttributeType == typeof(JsonPropertyAttribute));
+            var propJsonAttr = prop.CustomAttributes.FirstOrDefault(attr => attr.AttributeType == typeof(JsonPropertyAttribute));
 
             if (propJsonAttr == null)
                 continue;
 
-            CustomAttributeTypedArgument propJsonAttrArg = propJsonAttr.ConstructorArguments.FirstOrDefault(arg => arg.Value != null);
+            var propJsonAttrArg = propJsonAttr.ConstructorArguments.FirstOrDefault(arg => arg.Value != null);
                 
             var argName = propJsonAttrArg.Value as string;
             var argValue = prop.GetValue(this);

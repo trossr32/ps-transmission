@@ -1,21 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<nullable>disable</nullable>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="DeviceId" Version="6.3.0" />
-		<PackageReference Include="DeviceId.Linux" Version="6.3.0" />
-		<PackageReference Include="DeviceId.Mac" Version="6.2.0" />
-		<PackageReference Include="DeviceId.Windows" Version="6.2.0" />
-		<PackageReference Include="DeviceId.Windows.Wmi" Version="6.2.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Transmission.NetCore.Client\Transmission.NetCore.Client.csproj" />
-	</ItemGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <nullable>disable</nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DeviceId" Version="6.6.0" />
+    <PackageReference Include="DeviceId.Linux" Version="6.4.0" />
+    <PackageReference Include="DeviceId.Mac" Version="6.3.0" />
+    <PackageReference Include="DeviceId.Windows" Version="6.6.0" />
+    <PackageReference Include="DeviceId.Windows.Wmi" Version="6.6.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Transmission.NetCore.Client\Transmission.NetCore.Client.csproj" />
+  </ItemGroup>
 </Project>

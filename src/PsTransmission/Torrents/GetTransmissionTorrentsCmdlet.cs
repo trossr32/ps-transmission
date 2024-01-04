@@ -80,7 +80,7 @@ public class GetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
         base.BeginProcessing();
 
-        _torrentIds = new List<int>();
+        _torrentIds = [];
     }
 
     /// <summary>
@@ -105,10 +105,10 @@ public class GetTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
             Torrent[] torrents;
 
             if (Completed.IsPresent)
-                torrents = Task.Run(async () => await torrentSvc.GetCompletedTorrents()).Result;
+                torrents = Task.Run(torrentSvc.GetCompletedTorrents).Result;
             else if (Incomplete.IsPresent)
-                torrents = Task.Run(async () => await torrentSvc.GetIncompleteTorrents()).Result;
-            else if (_torrentIds.Any())
+                torrents = Task.Run(torrentSvc.GetIncompleteTorrents).Result;
+            else if (_torrentIds.Count != 0)
                 torrents = Task.Run(async () => await torrentSvc.GetTorrents(_torrentIds)).Result;
             else
                 torrents = Task.Run(async () => await torrentSvc.GetTorrents()).Result;

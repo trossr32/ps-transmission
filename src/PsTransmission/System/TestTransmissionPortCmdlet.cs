@@ -41,10 +41,7 @@ public class TestTransmissionPortCmdlet : BaseTransmissionCmdlet
     /// <summary>
     /// Implements the <see cref="BeginProcessing"/> method for <see cref="TestTransmissionPortCmdlet"/>.
     /// </summary>
-    protected override void BeginProcessing()
-    {
-        base.BeginProcessing();
-    }
+    protected override void BeginProcessing() => base.BeginProcessing();
 
     /// <summary>
     /// Implements the <see cref="ProcessRecord"/> method for <see cref="TestTransmissionPortCmdlet"/>.
@@ -55,7 +52,7 @@ public class TestTransmissionPortCmdlet : BaseTransmissionCmdlet
         {
             var systemSvc = new SystemService();
 
-            bool success = Task.Run(async () => await systemSvc.TestPort()).Result;
+            var success = Task.Run(systemSvc.TestPort).Result;
 
             if (AsBool.IsPresent)
             {

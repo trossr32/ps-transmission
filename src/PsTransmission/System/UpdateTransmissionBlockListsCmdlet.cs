@@ -41,10 +41,7 @@ public class UpdateTransmissionBlockListsCmdlet : BaseTransmissionCmdlet
     /// <summary>
     /// Implements the <see cref="BeginProcessing"/> method for <see cref="UpdateTransmissionBlockListsCmdlet"/>.
     /// </summary>
-    protected override void BeginProcessing()
-    {
-        base.BeginProcessing();
-    }
+    protected override void BeginProcessing() => base.BeginProcessing();
 
     /// <summary>
     /// Implements the <see cref="ProcessRecord"/> method for <see cref="UpdateTransmissionBlockListsCmdlet"/>.
@@ -55,17 +52,17 @@ public class UpdateTransmissionBlockListsCmdlet : BaseTransmissionCmdlet
         {
             var systemSvc = new SystemService();
 
-            (bool success, string error) response = Task.Run(async () => await systemSvc.UpdateBlockList()).Result;
+            var (success, error) = Task.Run(systemSvc.UpdateBlockList).Result;
 
             if (AsBool.IsPresent)
             {
-                WriteObject(response.success);
+                WriteObject(success);
 
                 return;
             }
 
-            if (!response.success)
-                ThrowTerminatingError(new ErrorRecord(new Exception($"Updating blocklists failed - {response.error}"), null, ErrorCategory.OperationStopped, null));
+            if (!success)
+                ThrowTerminatingError(new ErrorRecord(new Exception($"Updating blocklists failed - {error}"), null, ErrorCategory.OperationStopped, null));
 
             WriteObject("Updating blocklists successful");
         }

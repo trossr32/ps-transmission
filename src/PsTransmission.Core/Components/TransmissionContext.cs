@@ -17,8 +17,5 @@ public static partial class TransmissionContext
     /// <summary>
     /// Set credentials to null
     /// </summary>
-    public static void Dispose()
-    {
-        Credentials = null;
-    }
+    public static void Dispose() => Credentials = null;
 }

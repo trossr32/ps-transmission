@@ -163,9 +163,9 @@ public class AddTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
         base.BeginProcessing();
 
-        _urls = new List<string>();
-        _files = new List<string>();
-        _metas = new List<string>();
+        _urls = [];
+        _files = [];
+        _metas = [];
     }
 
     /// <summary>
@@ -197,22 +197,22 @@ public class AddTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
                 .Union(_metas)
                 .ToList();
 
-            // validate files, urls or metainfos have been supplied
-            if (!allTorrents.Any())
+            // validate files, urls or meta infos have been supplied
+            if (allTorrents.Count == 0)
                 ThrowTerminatingError(new ErrorRecord(new Exception("At least one of the following parameters must be supplied: Urls, Files, MetaInfos"), null, ErrorCategory.InvalidArgument, null));
 
             // validate FilesWanted, FilesUnwanted, PriorityHigh, PriorityLow & PriorityNormal haven't been supplied if multiple torrents are to be added
             if (allTorrents.Count > 1 &&
-                (FilesWanted ?? new List<int>()).Any() ||
-                (FilesUnwanted ?? new List<int>()).Any() ||
-                (PriorityHigh ?? new List<int>()).Any() ||
-                (PriorityLow ?? new List<int>()).Any() ||
-                (PriorityNormal ?? new List<int>()).Any())
+                (FilesWanted ?? []).Count != 0 ||
+                (FilesUnwanted ?? []).Count != 0 ||
+                (PriorityHigh ?? []).Count != 0 ||
+                (PriorityLow ?? []).Count != 0 ||
+                (PriorityNormal ?? []).Count != 0)
                 ThrowTerminatingError(new ErrorRecord(new Exception("If multiple torrents are supplied then none of the following parameters should be supplied: FilesWanted, FilesUnwanted, PriorityHigh, PriorityLow, PriorityNormal"), null, ErrorCategory.InvalidArgument, null));
 
             var torrentSvc = new TorrentService();
 
-            List<NewTorrent> newTorrents = _urls
+            var newTorrents = _urls
                 .Union(_files)
                 .Select(t => new NewTorrent
                 {
@@ -223,11 +223,11 @@ public class AddTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
                     Paused = Paused,
                     PeerLimit = PeerLimit,
                     BandwidthPriority = BandwidthPriority,
-                    FilesWanted = (FilesWanted ?? new List<int>()).Any() ? FilesWanted.ToArray() : null,
-                    FilesUnwanted = (FilesUnwanted ?? new List<int>()).Any() ? FilesUnwanted.ToArray() : null,
-                    PriorityHigh = (PriorityHigh ?? new List<int>()).Any() ? PriorityHigh.ToArray() : null,
-                    PriorityLow = (PriorityLow ?? new List<int>()).Any() ? PriorityLow.ToArray() : null,
-                    PriorityNormal = (PriorityNormal ?? new List<int>()).Any() ? PriorityNormal.ToArray() : null
+                    FilesWanted = (FilesWanted ?? []).Count != 0 ? [.. FilesWanted] : null,
+                    FilesUnwanted = (FilesUnwanted ?? []).Count != 0 ? [.. FilesUnwanted] : null,
+                    PriorityHigh = (PriorityHigh ?? []).Count != 0 ? [.. PriorityHigh] : null,
+                    PriorityLow = (PriorityLow ?? []).Count != 0 ? [.. PriorityLow] : null,
+                    PriorityNormal = (PriorityNormal ?? []).Count != 0 ? [.. PriorityNormal] : null
                 })
                 .ToList();
 
@@ -240,15 +240,15 @@ public class AddTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
                     Paused = Paused,
                     PeerLimit = PeerLimit,
                     BandwidthPriority = BandwidthPriority,
-                    FilesWanted = (FilesWanted ?? new List<int>()).Any() ? FilesWanted.ToArray() : null,
-                    FilesUnwanted = (FilesUnwanted ?? new List<int>()).Any() ? FilesUnwanted.ToArray() : null,
-                    PriorityHigh = (PriorityHigh ?? new List<int>()).Any() ? PriorityHigh.ToArray() : null,
-                    PriorityLow = (PriorityLow ?? new List<int>()).Any() ? PriorityLow.ToArray() : null,
-                    PriorityNormal = (PriorityNormal ?? new List<int>()).Any() ? PriorityNormal.ToArray() : null
+                    FilesWanted = (FilesWanted ?? []).Count != 0 ? [.. FilesWanted] : null,
+                    FilesUnwanted = (FilesUnwanted ?? []).Count != 0 ? [.. FilesUnwanted] : null,
+                    PriorityHigh = (PriorityHigh ?? []).Count != 0 ? [.. PriorityHigh] : null,
+                    PriorityLow = (PriorityLow ?? []).Count != 0 ? [.. PriorityLow] : null,
+                    PriorityNormal = (PriorityNormal ?? []).Count != 0 ? [.. PriorityNormal] : null
                 })
                 .ToList());
 
-            AddTorrentsResponse response = Task.Run(async () => await torrentSvc.AddTorrents(newTorrents)).Result;
+            var response = Task.Run(async () => await torrentSvc.AddTorrents(newTorrents)).Result;
 
             if (Json)
                 WriteObject(JsonConvert.SerializeObject(response));

@@ -45,7 +45,7 @@ public class SetTransmissionCredentialsCmdlet : Cmdlet
 
     /// <summary>
     /// <para type="description">
-    /// The user name used to login to your Transmission instance, if applicable.
+    /// The username used to log in to your Transmission instance, if applicable.
     /// </para>
     /// </summary>
     [Parameter(Mandatory = false, Position = 1)]
@@ -54,7 +54,7 @@ public class SetTransmissionCredentialsCmdlet : Cmdlet
 
     /// <summary>
     /// <para type="description">
-    /// The password used to login to your Transmission instance, if applicable.
+    /// The password used to log in to your Transmission instance, if applicable.
     /// </para>
     /// </summary>
     [Parameter(Mandatory = false, Position = 2)]
@@ -95,7 +95,7 @@ public class SetTransmissionCredentialsCmdlet : Cmdlet
             TransmissionContext.Credentials = config;
 
             if (StorePermanent.IsPresent)
-                Task.Run(async () => await AuthService.SetConfig(config));
+                Task.Run(() => AuthService.SetConfig(config));
         }
         catch (Exception e)
         {

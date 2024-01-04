@@ -83,7 +83,7 @@ public class MoveTransmissionTorrentsQueueCmdlet : BaseTransmissionCmdlet
     {
         base.BeginProcessing();
 
-        _torrentIds = new List<int>();
+        _torrentIds = [];
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public class MoveTransmissionTorrentsQueueCmdlet : BaseTransmissionCmdlet
                 ThrowTerminatingError(new ErrorRecord(new Exception("One of the following parameters must be supplied: Up, Down, Top, Bottom"), null, ErrorCategory.InvalidArgument, null));
 
             // validate a torrent id has been supplied
-            if (!(TorrentIds ?? new List<int>()).Any())
+            if ((TorrentIds ?? []).Count == 0)
                 ThrowTerminatingError(new ErrorRecord(new Exception("The TorrentIds parameter must be supplied."), null, ErrorCategory.InvalidArgument, null));
 
             var torrentSvc = new TorrentService();

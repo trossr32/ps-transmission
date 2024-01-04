@@ -76,7 +76,7 @@ public class StopTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
         base.BeginProcessing();
 
-        _torrentIds = new List<int>();
+        _torrentIds = [];
     }
 
     /// <summary>
@@ -96,25 +96,25 @@ public class StopTransmissionTorrentsCmdlet : BaseTransmissionCmdlet
     {
         try
         {
-            if (!All.IsPresent && !Completed.IsPresent && !Incomplete.IsPresent && !(TorrentIds ?? new List<int>()).Any())
+            if (!All.IsPresent && !Completed.IsPresent && !Incomplete.IsPresent && (TorrentIds ?? []).Count == 0)
                 ThrowTerminatingError(new ErrorRecord(new Exception("One of the following parameters must be supplied: All, Completed, Incomplete, TorrentIds"), null, ErrorCategory.InvalidArgument, null));
 
             var torrentSvc = new TorrentService();
 
             (bool success, int torrentCount) response;
-            string info = "";
+            var info = "";
 
             if (All.IsPresent)
                 response = Task.Run(async () => await torrentSvc.StopTorrents()).Result;
             else if (Completed.IsPresent)
             {
-                response = Task.Run(async () => await torrentSvc.StopCompletedTorrents()).Result;
+                response = Task.Run(torrentSvc.StopCompletedTorrents).Result;
 
                 info = "completed ";
             }
             else if (Incomplete.IsPresent)
             {
-                response = Task.Run(async () => await torrentSvc.StopIncompleteTorrents()).Result;
+                response = Task.Run(torrentSvc.StopIncompleteTorrents).Result;
 
                 info = "incomplete ";
             }

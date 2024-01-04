@@ -15,16 +15,16 @@ public static class EncryptionService
     /// <returns></returns>
     public static async Task<string> Encrypt(string clearText)
     {
-        byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+        var clearBytes = Encoding.Unicode.GetBytes(clearText);
 
-        using Aes crypto = Aes.Create();
-        using Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey(), Salt);
+        using var crypto = Aes.Create();
+        using Rfc2898DeriveBytes pdb = new(EncryptionKey(), Salt);
 
         crypto.Key = pdb.GetBytes(32);
         crypto.IV = pdb.GetBytes(16);
 
-        await using MemoryStream ms = new MemoryStream();
-        await using (CryptoStream cs = new CryptoStream(ms, crypto.CreateEncryptor(), CryptoStreamMode.Write))
+        await using MemoryStream ms = new();
+        await using (CryptoStream cs = new(ms, crypto.CreateEncryptor(), CryptoStreamMode.Write))
         {
             cs.Write(clearBytes, 0, clearBytes.Length);
         }
@@ -41,16 +41,16 @@ public static class EncryptionService
     {
         cipherText = cipherText.Replace(" ", "+");
 
-        byte[] cipherBytes = Convert.FromBase64String(cipherText.Trim());
+        var cipherBytes = Convert.FromBase64String(cipherText.Trim());
 
-        using Aes crypto = Aes.Create();
-        using Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey(), Salt);
+        using var crypto = Aes.Create();
+        using Rfc2898DeriveBytes pdb = new(EncryptionKey(), Salt);
 
         crypto.Key = pdb.GetBytes(32);
         crypto.IV = pdb.GetBytes(16);
 
-        await using MemoryStream ms = new MemoryStream();
-        await using (CryptoStream cs = new CryptoStream(ms, crypto.CreateDecryptor(), CryptoStreamMode.Write))
+        await using MemoryStream ms = new();
+        await using (CryptoStream cs = new(ms, crypto.CreateDecryptor(), CryptoStreamMode.Write))
         {
             cs.Write(cipherBytes, 0, cipherBytes.Length);
         }

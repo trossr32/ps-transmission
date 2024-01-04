@@ -51,10 +51,7 @@ public class SetTransmissionAltSpeedLimitsCmdlet : BaseTransmissionCmdlet
     /// <summary>
     /// Implements the <see cref="BeginProcessing"/> method for <see cref="SetTransmissionAltSpeedLimitsCmdlet"/>.
     /// </summary>
-    protected override void BeginProcessing()
-    {
-        base.BeginProcessing();
-    }
+    protected override void BeginProcessing() => base.BeginProcessing();
 
     /// <summary>
     /// Implements the <see cref="ProcessRecord"/> method for <see cref="SetTransmissionAltSpeedLimitsCmdlet"/>.
@@ -72,7 +69,7 @@ public class SetTransmissionAltSpeedLimitsCmdlet : BaseTransmissionCmdlet
                 AlternativeSpeedEnabled = Enable.IsPresent
             };
 
-            bool success = Task.Run(async () => await sessionSvc.Set(request)).Result;
+            var success = Task.Run(async () => await sessionSvc.Set(request)).Result;
 
             if (success)
                 WriteObject($"Alt speed settings {(Enable.IsPresent ? "enabled" : "disabled")} successfully");
